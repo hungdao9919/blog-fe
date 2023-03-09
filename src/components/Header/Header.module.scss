@@ -1,0 +1,32 @@
+.header_wrapper{
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+
+    background-color:#ffffff;
+}
+.header_container{
+    background-color:#666;
+    max-width: 1150px;
+    width: 100%;
+
+    display: flex; 
+    justify-content: space-around;
+    height: 60px;
+}
+.logo_container{
+   background-color: yellow;
+   width: 220px;
+}
+.navigation_container{
+    background-color:rgb(0, 255, 85);
+    width: 620px;
+
+
+}
+.actions_container{
+    background-color:rgb(109, 109, 45);
+    width: 220px;
+
+}

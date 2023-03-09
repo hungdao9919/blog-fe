@@ -1,6 +1,6 @@
 import Header from '../../Header'
  
-function ProfileLayout({children}){
+function HeaderOnlyLayout({children}){
 
     return (
         <div>
@@ -11,4 +11,4 @@ function ProfileLayout({children}){
         </div>
     )
 }
-export default ProfileLayout
+export default HeaderOnlyLayout

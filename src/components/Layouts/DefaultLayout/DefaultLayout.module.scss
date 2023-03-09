@@ -1,0 +1,24 @@
+.wrapper{
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+}
+.container{
+    background-color: bisque;
+    max-width: 1150px;
+    width: 100%;
+
+    display: flex; 
+    justify-content: space-around;
+}
+.side_bar{
+    background-color: rgb(126, 82, 28);
+    width: 400px;
+
+}
+.content_container{
+    background-color: rgb(209, 126, 24);
+    width: 900px;
+
+
+}

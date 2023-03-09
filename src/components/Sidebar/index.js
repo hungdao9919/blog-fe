@@ -7,10 +7,10 @@
         .then((data) => setPosts(data));
     
     },[])
-    return <ul>
+    return <div>
         <p>Noi dung Side bar nha </p>
-        {posts.map((post,index)=><li key={index}>{post.title}</li>)}
-    </ul>
+        {posts.map((post,index)=><a href={`${post.it}`} key={index}>{post.title}</a>)}
+    </div>
 
 }
 export default Sidebar;
