@@ -4,7 +4,7 @@ import PostDetail from './pages/Posts'
 import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import PostEditor from './components/PostEditor'
+import PostEditor from './pages/PostEditor'
 import DefaultLayout from './components/Layouts/DefaultLayout'
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
 function App() {

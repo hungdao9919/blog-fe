@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const register = async (username, password, email, lastname, firstname, profileImage)=>{ 
-    return  await axios.post('http://34.125.251.148:3000/register', {
+    return  await axios.post('http://localhost:3001/register', {
         "username": username,
         "password": password,
         "email":email,
@@ -18,7 +18,8 @@ const register = async (username, password, email, lastname, firstname, profileI
       }
     )
       .then( (response)=> {
-        localStorage.setItem('at',response.data.accessToken)
+        const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
+        localStorage.setItem("key", JSON.stringify(object));  
         return response.data.accessToken
       })
       .catch( (error)=> {

@@ -1,20 +1,18 @@
 import axios from "axios";
+import {hostAPI} from '../configs'
 
 const logIn = async (username,password)=>{ 
-    return  await axios.post('http://34.125.251.148:3000/login', {
+    return  await axios.post(`${hostAPI}/login`, {
         "username": username,
         "password": password
       },
       {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        // withCredentials: true,
+        withCredentials: true
       }
     )
       .then( (response)=> {
-        localStorage.setItem('at',response.data.accessToken)
+        const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
+        localStorage.setItem("key", JSON.stringify(object)); 
         return response.data.accessToken
       })
       .catch( (error)=> {

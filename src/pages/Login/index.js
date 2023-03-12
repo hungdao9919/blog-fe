@@ -1,6 +1,9 @@
 import styles from './Login.module.scss'
 import {useState} from 'react'  
 import LogIn from '../../services/login'
+import generateNewAcessToken from "../../services/generateNewAccessToken";
+
+
 
 function Login(){ 
     const [username, setUsername] = useState('')
@@ -10,6 +13,11 @@ function Login(){
             e.preventDefault(); 
             const loginResult = await LogIn(username,password) 
             console.log(loginResult)
+    }
+
+    const handleNewAcessToken = async ()=>{
+        const newAcessToken = await generateNewAcessToken()
+        console.log(newAcessToken)
     }
     
     return <div className={styles.login_wrapper}>
@@ -25,6 +33,7 @@ function Login(){
                 {/* <p>{errorLogin && `Lỗi ${errorLogin}` }</p> */}
             </div>
         </form>
+        <button onClick={handleNewAcessToken}>Lay ton ken moi </button>
     </div>
 }
 export default Login;
