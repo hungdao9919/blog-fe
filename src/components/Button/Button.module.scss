@@ -61,7 +61,8 @@
     background-image: linear-gradient(var(--primary) 0 0);
     &:hover{  
         background-size: 55% 2px;
-        padding-bottom: 2px;  
+        // padding-bottom: 2px;  
+        // transform: scaleY(2px);
         background-color: unset;
     }
 }
@@ -72,7 +73,7 @@
     padding-bottom: 4px;  
     &:hover{  
         background-size: 55% 2px;
-        padding-bottom: 2px;  
+        // padding-bottom: 2px;  
         background-color: unset;
     }
 }
