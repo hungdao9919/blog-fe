@@ -1,19 +1,14 @@
 import styles from './Profile.module.scss'
-import getProfileInfo from '../../services/getProfileInfo';
-import { useEffect, useState } from 'react';
+import {  useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalContext';
 import {hostAPI} from '../../services/configs'
 
-function Profile(){
-    const [profileInfo, setProfileInfo] = useState() 
-    useEffect(()=>{
-        async function handleGetProfileInfo (){
-            const result  =  await getProfileInfo() 
-            setProfileInfo(result) 
-         }
 
-         handleGetProfileInfo() 
-    },[])  
-    console.log('render')
+function Profile(){
+    const globalContext = useContext(GlobalContext) 
+    const profileInfo = globalContext.profileInfo
+ 
+    console.log('Profile render')
      
     const result = !profileInfo ? <h2>Loading</h2> : <div className={styles.container} >
         <h2>{profileInfo._id}</h2>
