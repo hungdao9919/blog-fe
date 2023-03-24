@@ -1,28 +1,14 @@
 import axios from "axios";
-import {hostAPI} from '../configs'
-import generateNewAcessToken from "../generateNewAccessToken";
-
+import {hostAPI} from '../configs' 
+import getAccessToken from "../getAccessToken";
 const getProfileInfo = async ()=>{ 
-  const object = JSON.parse(localStorage.getItem('key'))
-    let acessToken;
-    const now = new Date().getTime().toString(); 
-
-    if(now < (object.timestamp  + 19000)) {
-      console.log('con han ok post')
-      acessToken = object.value 
-    }
-    else{
-      console.log('het han, tao token moi')
-      acessToken = await generateNewAcessToken()  
-
-    }
-    console.log(acessToken)
+    const accessToken = await getAccessToken()  
     return  await axios.get(`${hostAPI}/user`,
       {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${acessToken}`
+          Authorization: `Bearer ${accessToken}`
       }, 
         withCredentials: true
       }

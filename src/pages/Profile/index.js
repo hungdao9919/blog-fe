@@ -12,8 +12,7 @@ function Profile(){
          }
 
          handleGetProfileInfo() 
-    },[]) 
-    console.log(profileInfo)
+    },[])  
     console.log('render')
      
     const result = !profileInfo ? <h2>Loading</h2> : <div className={styles.container} >
