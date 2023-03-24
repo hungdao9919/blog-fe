@@ -1,7 +1,8 @@
 import axios from "axios";
+import {hostAPI} from '../configs'
 
 const register = async (username, password, email, lastname, firstname, profileImage)=>{ 
-    return  await axios.post('http://localhost:3001/register', {
+    return  await axios.post(`${hostAPI}/register`, {
         "username": username,
         "password": password,
         "email":email,
