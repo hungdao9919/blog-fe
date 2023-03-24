@@ -10,7 +10,7 @@ function Profile(){
  
     console.log('Profile render')
      
-    const result = !profileInfo ? <h2>Loading</h2> : <div className={styles.container} >
+    const result = !profileInfo ? <h2>Vui lòng đăng nhập</h2> : <div className={styles.container} >
         <h2>{profileInfo._id}</h2>
         <h2>{profileInfo.username}</h2>
         <h2>{profileInfo.lastname}</h2>
@@ -21,7 +21,7 @@ function Profile(){
         <img src={`${hostAPI}${profileInfo.profileImage.slice(2)}`}/>
   
 </div>
-     
+       
     return result;
 }
 export default Profile;

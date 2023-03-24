@@ -1,7 +1,12 @@
 import axios from "axios";
-import {hostAPI} from '../configs'
+import {hostAPI} from '../configs' 
+ 
+
 
 const logIn = async (username,password)=>{ 
+    
+     
+    
     return  await axios.post(`${hostAPI}/login`, {
         "username": username,
         "password": password
@@ -11,8 +16,10 @@ const logIn = async (username,password)=>{
       }
     )
       .then( (response)=> {
+        
         const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
         localStorage.setItem("key", JSON.stringify(object)); 
+         
         return response.data.accessToken
       })
       .catch( (error)=> {

@@ -11,11 +11,29 @@ const GlobalProvider = ({children})=>{
     useEffect(()=>{
         async function handleGetProfileInfo (){
             const result  =  await getProfileInfo() 
+            if(result?.roles?.Admin){ 
+                setIsAdmin(true) 
+            }
+            else{
+                setIsAdmin(false)   
+            }
             setProfileInfo(result) 
          }
 
          handleGetProfileInfo() 
     },[])  
+    //setIsLogged
+    
+    useEffect(()=>{
+        const token = localStorage.getItem('key')
+        if(token){
+            setIsLogged(true)
+        }
+        
+    },[])  
+     
+   
+ 
 
 
      

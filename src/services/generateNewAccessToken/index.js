@@ -13,9 +13,9 @@ const generateNewAcessToken = async ()=>{
       withCredentials: true 
     }
     )
-      .then( (response)=> {
-        localStorage.setItem('at',response.data.accessToken)
-         
+      .then( (response)=> { 
+        const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
+        localStorage.setItem("key", JSON.stringify(object));  
         return response.data.accessToken
       })
       .catch( (error)=> {
