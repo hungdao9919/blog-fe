@@ -24,7 +24,7 @@ const GlobalProvider = ({children})=>{
     },[])  
     //setIsLogged
     
-    useEffect(()=>{
+    useEffect( ()=>{
         const token = localStorage.getItem('key')
         if(token){
             setIsLogged(true)

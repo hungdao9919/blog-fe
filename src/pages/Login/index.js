@@ -1,30 +1,32 @@
 import styles from './Login.module.scss'
 import {useState} from 'react'  
-import LogIn from '../../services/login' 
-import {  useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalContext';
+import login from '../../services/login'  
 import { useNavigate,Link } from "react-router-dom";
 
 
-function Login(){ 
-    const globalContext = useContext(GlobalContext) 
+function Login(){  
     const navigate = useNavigate();
-
-    const isLogged = globalContext.isLogged  
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('') 
- 
-     const handleSubmit =async (e)=>{
+   
+    const handleSubmit =async (e) => {
             e.preventDefault(); 
-            const loginResult = await LogIn(username,password) 
-            navigate(0)
+            const result =  await login(username,password) 
+            if(result.status ===200){
+
+                navigate('/')
+                navigate(0)     
+            }
+            else{
+                console.log(result)
+            }
 
 
 
     }
 
-     
-    const loginForm =  <div className={styles.login_wrapper}>
+    console.log('render login form')
+    return  <div className={styles.login_wrapper}>
     <form onSubmit={handleSubmit}>
         <div className={styles.login_container}>
             <label htmlFor="uname"><b>Username</b></label>
@@ -39,8 +41,6 @@ function Login(){
         </div>
     </form>
     
-</div>
-    const result = isLogged ? navigate('/'): loginForm
-    return  result
+</div> 
 }
 export default Login;

@@ -1,15 +1,19 @@
  import { useState,useEffect } from "react";
+ import getPublicPosts from "../../services/getPublicPosts";
   function Sidebar (){
     const [posts, setPosts] = useState([]);
-    useEffect(() => {
-        fetch("http://34.125.251.148:3000/public-posts")
-        .then((response) => response.json())
-        .then((data) => setPosts(data));
-    
+  
+    useEffect(  () => {
+        async function getPosts (){
+            const postsResult = await getPublicPosts()
+            setPosts(postsResult)
+        }
+        getPosts()
     },[])
+    
     return <div>
         <p>Noi dung Side bar nha </p>
-        {posts.map((post,index)=><li  key={index}>{post.title}</li>)}
+        {posts.length>0 && posts.map((post,index)=><li  key={index}>{post.title}</li>)}
     </div>
 
 }
