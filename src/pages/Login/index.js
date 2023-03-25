@@ -3,7 +3,7 @@ import {useState} from 'react'
 import LogIn from '../../services/login' 
 import {  useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 
 function Login(){ 
@@ -34,12 +34,13 @@ function Login(){
             <input onChange={(e)=>setPassword(e.target.value)} value={password}  type="password" placeholder="Enter Password" name="psw" required/>
 
             <button type="submit">Login</button>
-           
+            
+           <div><p>Do not have an account? <Link  to='/register'>Register new account</Link>.</p></div>
         </div>
     </form>
     
 </div>
-    const result = isLogged ?<h2>Loading</h2>: loginForm
+    const result = isLogged ? navigate('/'): loginForm
     return  result
 }
 export default Login;

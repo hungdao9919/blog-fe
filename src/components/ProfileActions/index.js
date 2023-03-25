@@ -1,20 +1,31 @@
  
 import styles from './ProfileActions.module.scss'
 import Button from "../Button"; 
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+
 import {  useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 import { hostAPI } from '../../services/configs';
+import logOut from '../../services/logOut';
 function ProfileActions(){ 
+    const navigate = useNavigate();
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged  
     const profileInfo = globalContext.profileInfo   
     const handleLogout = ()=>{
-        console.log("ga")
+        logOut() 
+        navigate(0)
     }
     return <div className={styles.container}>
+         {
+            isLogged ||
+            <Button to={'/register'} rounded small secondary>Register</Button>
+        }
         
-        <Button to={'/editor'} rounded small secondary>Create post</Button>
+        {
+            isLogged &&
+            <Button to={'/editor'} rounded small secondary>Create post</Button>
+        }
 
         {
             isLogged ||
