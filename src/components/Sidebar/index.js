@@ -16,7 +16,7 @@ import styles from './Sidebar.module.scss'
     return <div className={styles.container}>
         {console.log('Render Sidebar')}
         <p>Danh sách bài viết </p>
-        {posts.length>0 && posts.map((post,index)=><Post key={index} title={post.title} postcontent={post.postcontent} datecreated={post.datecreated} />)}
+        {posts.length>0 && posts.map((post,index)=><Post key={index} title={post.title} postcontent={post.postcontent} datecreated={post.datecreated} username={post.username} />)}
     </div>
 
 }
