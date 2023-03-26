@@ -4,7 +4,7 @@ import { Link ,useNavigate} from 'react-router-dom'
 import register from '../../services/register'
 import { GlobalContext } from '../../context/GlobalContext';
 import { useContext } from 'react' 
-function Login(){ 
+function Register(){ 
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ function Login(){
     }
     
     return <div className={styles.login_wrapper}>
-         
+         {console.log('Render Register form')}
         <form onSubmit={handleSubmit} action="action_page.php">
             <div className="container">
                 <h1>Register</h1>
@@ -66,4 +66,4 @@ function Login(){
         </form>
     </div>
 }
-export default Login;
+export default Register;
