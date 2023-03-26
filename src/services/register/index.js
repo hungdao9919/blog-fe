@@ -21,7 +21,7 @@ const register = async (username, password, email, lastname, firstname, profileI
       .then( (response)=> {
         const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
         localStorage.setItem("key", JSON.stringify(object));  
-        return response.data.accessToken
+         return {status: response.status,accessToken: response.data.accessToken}
       })
       .catch( (error)=> {
         return error.response.data.message

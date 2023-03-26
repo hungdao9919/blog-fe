@@ -2,14 +2,21 @@ import styles from './PostEditor.module.scss'
 import { useState } from 'react' 
 import createPost from '../../services/createPost'
 import generateNewAcessToken from "../../services/generateNewAccessToken";
+import { useNavigate} from 'react-router-dom'
 
-
+import { GlobalContext } from '../../context/GlobalContext';
+import { useContext } from 'react' 
 
 function PostEditor(){
-     
+    const navigate = useNavigate();
 
+    const globalContext = useContext(GlobalContext) 
+    const isLogged = globalContext.isLogged
     const [title, setTitle] = useState('')
     const [postcontent, setPostcontent] = useState('')
+    if(!isLogged){
+        navigate('/')
+    }
     const handleSubmit = async(e)=>{
         e.preventDefault();
         const  createPostResult = await createPost(title,postcontent) 

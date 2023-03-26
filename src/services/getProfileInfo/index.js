@@ -3,7 +3,9 @@ import {hostAPI} from '../configs'
 import getAccessToken from "../getAccessToken";
 const getProfileInfo = async ()=>{ 
     const accessToken = await getAccessToken()  
-    return  await axios.get(`${hostAPI}/user`,
+     
+    if(accessToken){
+      return  await axios.get(`${hostAPI}/user`,
       {
         headers: {
           'Accept': 'application/json',
@@ -20,5 +22,6 @@ const getProfileInfo = async ()=>{
       .catch( (error)=> {
         return error.response.data.message
       });
+    }
 }
 export default getProfileInfo;

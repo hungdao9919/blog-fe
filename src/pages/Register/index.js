@@ -1,18 +1,33 @@
 import styles from './Register.module.scss'
 import {useState} from 'react'   
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom'
 import register from '../../services/register'
-
+import { GlobalContext } from '../../context/GlobalContext';
+import { useContext } from 'react' 
 function Login(){ 
+    const globalContext = useContext(GlobalContext) 
+    const isLogged = globalContext.isLogged
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('') 
     const [firstname, setFirstname] = useState('') 
     const [lastname, setLastname] = useState('') 
     const [email, setEmail] = useState('')  
-     const handleSubmit =async (e)=>{
+    if(isLogged){
+        navigate('/')
+    }
+    const handleSubmit =async (e)=>{
             e.preventDefault(); 
-            const registerResult =await register(username,password,firstname,lastname,email)
-            console.log(registerResult)             
+             
+            const registerResult =await register(username,password,email,lastname,firstname)
+            if(registerResult.status ===201){
+                navigate('/')
+                navigate(0)     
+            }
+            else{
+                console.log(registerResult)
+            }            
     }
     
     return <div className={styles.login_wrapper}>

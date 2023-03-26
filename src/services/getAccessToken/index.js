@@ -3,7 +3,8 @@ import generateNewAcessToken from "../generateNewAccessToken";
 const getAccessToken = async ()=>{ 
 
     const object = JSON.parse(localStorage.getItem('key'))
-        let accessToken;
+        if(object){
+          let accessToken;
         const now = new Date().getTime().toString(); 
     
         if(now < (object.timestamp  + 19000)) {
@@ -15,6 +16,7 @@ const getAccessToken = async ()=>{
           return accessToken = await generateNewAcessToken()  
     
         } 
+        }
 }
 
 export default getAccessToken

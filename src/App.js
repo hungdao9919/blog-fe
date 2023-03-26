@@ -7,7 +7,8 @@ import Register from './pages/Register'
 import PostEditor from './pages/PostEditor'
 import DefaultLayout from './components/Layouts/DefaultLayout'
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
-function App() {
+function App() { 
+
   return (
     <Router>
       <div className="App">

@@ -10,10 +10,15 @@
     justify-content: center;
 }
 .profile_container .profile_name{
-    line-height: 1.6rem;
-    font-size: 1.6rem;
-    margin-right: 8px;
+    margin-right: 2px;
     color: var(--primary);
+    overflow: hidden;
+    width: 75px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 60%;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .profile_image img{
     border: 1px solid rgb(121, 121, 121);
