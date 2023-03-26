@@ -4,18 +4,13 @@ import {hostAPI} from '../configs'
 
 
 const logOut = async ()=>{ 
-    return  await axios.post(`${hostAPI}/logout`,  
-      {
-        withCredentials: true
-      }
-    )
-      .then( (response)=> {
-          
-        localStorage.removeItem('key'); 
-        return response.data.accessToken
-      })
-      .catch( (error)=> {
-        return error.response.data.message
-      });
+    return  await axios(`${hostAPI}/logout`,{ method:'post', withCredentials: true })
+    .then( (response)=> {  
+      localStorage.removeItem('key'); 
+      return response.data
+    })
+    .catch( (error)=> {
+      return error.response.data.message 
+    });
 }
-export default logOut
+export default logOut 

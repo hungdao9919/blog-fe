@@ -12,12 +12,13 @@ function ProfileActions(){
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged  
     const profileInfo = globalContext.profileInfo   
-    const handleLogout = ()=>{
-        logOut() 
+    const handleLogout = async ()=>{
+        await logOut() 
         navigate(0)
     }
     return <div className={styles.container}>
         {console.log('Render ProfileActions')}
+        {console.log('Render ProfileActions',isLogged)}
          {
             isLogged ||
             <Button to={'/register'} rounded small secondary>Register</Button>
