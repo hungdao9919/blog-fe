@@ -26,6 +26,7 @@ function PostEditor(){
         const newAcessToken = await generateNewAcessToken() 
     }
     return <div className={styles.post_editor_wrapper}>
+        {console.log('Render PostEditor')}
         <form onSubmit={handleSubmit}>
             <div className={styles.post_editor_container}>
                 <label htmlFor="uname"><b>Title</b></label>

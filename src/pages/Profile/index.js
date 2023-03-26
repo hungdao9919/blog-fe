@@ -8,9 +8,10 @@ function Profile(){
     const globalContext = useContext(GlobalContext) 
     const profileInfo = globalContext.profileInfo
  
-    console.log('Profile render')
+    
      
     const result = !profileInfo ? <h2>Vui lòng đăng nhập</h2> : <div className={styles.container} >
+        {console.log('Profile render')}
         <h2>{profileInfo._id}</h2>
         <h2>{profileInfo.username}</h2>
         <h2>{profileInfo.lastname}</h2>
