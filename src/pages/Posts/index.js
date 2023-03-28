@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 import styles from './Posts.module.scss' 
 import { useContext } from "react";
-import { PostsContext,PostsProvider } from "../../context/PostsContext";
-
+import { PostsContext } from "../../context/PostsContext";
+import Comment from "../../components/Comment";
  import getPublicPosts from "../../services/getPublicPosts";
  import Post from "../../components/Post";
   function Posts (){
@@ -10,8 +10,7 @@ import { PostsContext,PostsProvider } from "../../context/PostsContext";
     const postContext = useContext(PostsContext)
     useEffect(  () => {
         async function getPosts (){
-            const postsResult = await getPublicPosts()
-            console.log(postsResult)
+            const postsResult = await getPublicPosts() 
             postContext.setId(postsResult[0].id)
             postContext.setTitle(postsResult[0].title)
             postContext.setPostContent(postsResult[0].postcontent)
@@ -31,7 +30,7 @@ import { PostsContext,PostsProvider } from "../../context/PostsContext";
             {posts.length>0 && posts.map((post,index)=><Post key={index} id={post.id} title={post.title} dateModify={post.datemodify} postcontent={post.postcontent} datecreated={post.datecreated} username={post.username} />)}
         </div>
         <div className={styles.content_container}> 
-        
+        {posts.length>0 && 
         <div>
         <p className={styles.post_id}>{`id ${postContext.id}`}</p>
         <p className={styles.post_title}>{`title ${postContext.title}`}</p>
@@ -39,10 +38,10 @@ import { PostsContext,PostsProvider } from "../../context/PostsContext";
         <p className={styles.post_datecreated}>{`dateCreated ${postContext.dateCreated}`}</p>
         <p className={styles.post_datemodify}>{`dateModify ${postContext.dateModify}`}</p> 
         <p className={styles.post_username}>{`username ${postContext.username}`}</p>
+        </div>}
+        {posts.length>0 &&  <Comment/>}
         </div>
-        <div>Comment</div>
-        </div>
-    </div>
+    </div>  
     </div>
      
     

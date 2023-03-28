@@ -8,12 +8,13 @@ const PostsProvider = ({children})=>{
     const [dateModify,setDateModify] = useState('')
     const [dateCreated,setDateCreated] = useState('')
     const [username,setUsername] = useState('')
+    const [comments,setComments] = useState([])
     
 
 
      
      
-    return <PostsContext.Provider value={{title,setTitle,postContent,setPostContent,id,setId,dateModify,setDateModify,dateCreated,setDateCreated,username,setUsername}}>
+    return <PostsContext.Provider value={{title,setTitle,postContent,setPostContent,id,setId,dateModify,setDateModify,dateCreated,setDateCreated,username,setUsername,comments,setComments}}>
         {children}
     </PostsContext.Provider>
 }

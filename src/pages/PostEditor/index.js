@@ -20,11 +20,11 @@ function PostEditor(){
     const handleSubmit = async(e)=>{
         e.preventDefault();
         const  createPostResult = await createPost(title,postcontent) 
-         
+
+         setTitle('')
+         setPostcontent('')
     }
-    const handleNewAcessToken = async ()=>{
-        const newAcessToken = await generateNewAcessToken() 
-    }
+ 
     return <div className={styles.post_editor_wrapper}>
         {console.log('Render PostEditor')}
         <form onSubmit={handleSubmit}>
@@ -39,8 +39,7 @@ function PostEditor(){
 
                  
             </div>
-        </form>
-        <button onClick = {handleNewAcessToken} >Tao token moi </button>
+        </form> 
     </div>
 }
 export default PostEditor;

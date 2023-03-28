@@ -17,8 +17,7 @@ function ProfileActions(){
         navigate(0)
     }
     return <div className={styles.container}>
-        {console.log('Render ProfileActions')}
-        {console.log('Render ProfileActions',isLogged)}
+        {console.log('Render ProfileActions')} 
          {
             isLogged ||
             <Button to={'/register'} rounded small secondary>Register</Button>

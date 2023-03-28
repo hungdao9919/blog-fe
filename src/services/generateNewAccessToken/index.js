@@ -1,8 +1,8 @@
 import axios from "axios";
 import {hostAPI} from '../configs'
-
+import logOut from '../logOut'
 const generateNewAcessToken = async ()=>{ 
-   
+
     return  await axios.get(`${hostAPI}/refresh`, 
     
     {
@@ -15,10 +15,12 @@ const generateNewAcessToken = async ()=>{
     )
       .then( (response)=> { 
         const object = {value: response.data.accessToken, timestamp: new Date().getTime()}
-        localStorage.setItem("key", JSON.stringify(object));  
+        localStorage.setItem("key", JSON.stringify(object));   
         return response.data.accessToken
       })
-      .catch( (error)=> {
+      .catch( async (error)=> {
+        await logOut() 
+        window.location.reload()
         return error.message
       });
 }
