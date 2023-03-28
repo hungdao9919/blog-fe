@@ -1,20 +1,34 @@
-import { useState, createContext,useEffect} from 'react' 
+import { useState, createContext,useEffect, useContext} from 'react' 
+import getPublicPosts from "../services/getPublicPosts";
+import { PostContext } from './PostContext';
 const PostsContext = createContext()
 
 const PostsProvider = ({children})=>{ 
-    const [title,setTitle] = useState('')
-    const [postContent,setPostContent] = useState('')
-    const [id,setId] = useState('')
-    const [dateModify,setDateModify] = useState('')
-    const [dateCreated,setDateCreated] = useState('')
-    const [username,setUsername] = useState('')
-    const [comments,setComments] = useState([])
+    const {post,setPost} = useContext(PostContext) 
+    const [posts,setPosts] = useState([]);
+    let postsResult
+    useEffect(  () => {
+        async function getPosts (callback){
+            postsResult = await getPublicPosts()  
+            setPosts(postsResult)   
+            callback(postsResult)     
+             
+                
+             
+        }
+        getPosts(callback)
+    },[])
+    const callback =(postsResult)=>{ 
+        setPost(postsResult[0])
+    }
+  
+
     
 
 
      
      
-    return <PostsContext.Provider value={{title,setTitle,postContent,setPostContent,id,setId,dateModify,setDateModify,dateCreated,setDateCreated,username,setUsername,comments,setComments}}>
+    return <PostsContext.Provider value={{posts,setPosts}}>
         {children}
     </PostsContext.Provider>
 }

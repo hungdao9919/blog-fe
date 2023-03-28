@@ -4,7 +4,7 @@ import getAccessToken from "../getAccessToken";
 
 const createComment = async (postid, commentcontent)=>{ 
   const accessToken = await getAccessToken()  
-
+      
     return  await axios.post(`${hostAPI}/comment`, {
         "postid": postid,
         "commentcontent": commentcontent

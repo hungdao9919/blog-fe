@@ -6,7 +6,7 @@ const GlobalProvider = ({children})=>{
      
     const [isAdmin, setIsAdmin] = useState(false) 
     const [isLogged, setIsLogged] = useState(false) 
-    const [profileInfo, setProfileInfo] = useState() 
+    const [profileInfo, setProfileInfo] = useState()  
     // profile info
     useEffect(()=>{
         async function handleGetProfileInfo (){

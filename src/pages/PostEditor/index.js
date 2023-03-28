@@ -1,7 +1,6 @@
 import styles from './PostEditor.module.scss'
 import { useState } from 'react' 
-import createPost from '../../services/createPost'
-import generateNewAcessToken from "../../services/generateNewAccessToken";
+import createPost from '../../services/createPost' 
 import { useNavigate} from 'react-router-dom'
 
 import { GlobalContext } from '../../context/GlobalContext';
