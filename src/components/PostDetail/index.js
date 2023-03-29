@@ -12,7 +12,7 @@ function PostDetail (){
    
     return (posts.length>0 && 
         <div>
-        <p className={styles.post_id}>{`id ${post.id}`}</p>
+        <p className={styles.post_id}>{`id ${post._id}`}</p>
         <p className={styles.post_title}>{`title ${post.title}`}</p>
         <p className={styles.post_postcontent}>{`postContent ${post.postcontent}`}</p>
         <p className={styles.post_datecreated}>{`dateCreated ${post.datecreated}`}</p>

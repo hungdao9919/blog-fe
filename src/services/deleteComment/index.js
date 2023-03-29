@@ -4,6 +4,7 @@ import getAccessToken from "../getAccessToken";
 
 const deleteComment = async (commentId)=>{ 
   const accessToken = await getAccessToken()   
+  console.log('remove comment', commentId)
         
       return  await axios.delete(`${hostAPI}/comment`,
       {

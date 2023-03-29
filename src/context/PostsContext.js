@@ -13,23 +13,16 @@ const PostsProvider = ({children})=>{
             setPosts(postsResult)   
             callback(postsResult)     
              
-                
-             
         }
         getPosts(callback)
     },[])
     const callback =(postsResult)=>{ 
         setPost(postsResult[0])
-    }
-  
-
-    
-
-
-     
+    }     
      
     return <PostsContext.Provider value={{posts,setPosts}}>
         {children}
     </PostsContext.Provider>
 }
 export {PostsProvider, PostsContext}
+ 

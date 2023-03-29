@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import PostEditor from './pages/PostEditor'  
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
 import { PostProvider } from './context/PostContext'
+import {PostEditorProvider} from './context/PostEditorContext'
 function App() { 
 
   return (
@@ -19,7 +20,9 @@ function App() {
           <HeaderOnlyLayout>
             <PostProvider>
               <PostsProvider>
+                <PostEditorProvider>
                 <Posts/>
+                </PostEditorProvider>
               </PostsProvider>
             </PostProvider>
           </HeaderOnlyLayout>
@@ -27,17 +30,32 @@ function App() {
           <Route path='/posts' element={
           <HeaderOnlyLayout>
             <PostProvider>
-              <PostsProvider>
+              <PostsProvider>  
+              <PostEditorProvider>
                 <ListPosts/>
+              </PostEditorProvider>
               </PostsProvider>
             </PostProvider>
           </HeaderOnlyLayout>
           }/>
           {/* <Route path='/posts/:id' element={<DefaultLayout><PostDetail/></DefaultLayout>}/> */}
-          <Route path='/profile' element={<HeaderOnlyLayout><PostProvider><Profile/></PostProvider></HeaderOnlyLayout>}/>
+          <Route path='/profile' element={
+          <HeaderOnlyLayout>
+            <PostProvider>
+              <Profile/>
+            </PostProvider>
+          </HeaderOnlyLayout>}/>
           <Route path='/login' element={<HeaderOnlyLayout><Login/></HeaderOnlyLayout>}/>
           <Route path='/register' element={<HeaderOnlyLayout><Register/></HeaderOnlyLayout>}/>
-          <Route path='/editor' element={<HeaderOnlyLayout><PostEditor/></HeaderOnlyLayout>}/>  
+          <Route path='/editor' element={
+          <HeaderOnlyLayout>
+            <PostProvider>
+              <PostEditorProvider>
+                <PostEditor/>
+              </PostEditorProvider>
+            </PostProvider>
+          </HeaderOnlyLayout>
+          }/>  
         </Routes>
       </div>
     </Router>
