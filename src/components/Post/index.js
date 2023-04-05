@@ -6,7 +6,7 @@ import Button from '../Button';
 import deletePost from '../../services/deletePost' 
 import { Navigate, useNavigate } from 'react-router-dom';
 import { PostEditorContext } from '../../context/PostEditorContext';
-function Post({_id,userid,title,postcontent,datecreated,datemodify,username}){ 
+function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){ 
     const [del, setDel] = useState(false)
     const navigate = useNavigate(Navigate)
     const globalContext = useContext(GlobalContext) 
@@ -14,7 +14,10 @@ function Post({_id,userid,title,postcontent,datecreated,datemodify,username}){
     const {isEdit,setIsEdit} = useContext(PostEditorContext)  
 
     const  handleSelectPost = () =>{ 
-        setPost({'_id':_id,'title':title,'postcontent':postcontent,'datecreated':datecreated,'datemodify':datemodify,'username':username})
+        if(post._id !=_id){ 
+            setPost({'_id':_id,'title':title,'postcontent':postcontent,'createdAt':createdAt,'updatedAt':updatedAt,'username':username}) 
+        }
+        
     } 
     const handleRemovePost = async ()=>{ 
        const deleteResult = await deletePost(_id)
@@ -26,8 +29,7 @@ function Post({_id,userid,title,postcontent,datecreated,datemodify,username}){
     const handleEditPost =(e)=>{ 
         e.preventDefault(); 
         console.log(_id,isEdit)
-        navigate('/editor')
-          
+        navigate('/editor')     
         
      } 
     return ( del || <div onClick={()=>handleSelectPost() } className={styles.container}>
@@ -35,7 +37,8 @@ function Post({_id,userid,title,postcontent,datecreated,datemodify,username}){
         <p className={styles.title}>{title}</p>
         <p className={styles.short_desc}>{postcontent}</p>
         <div className={styles.details}>
-            <p className={styles.date_created}>{datecreated}</p>
+            <p className={styles.date_created}>{createdAt}</p>
+            <p className={styles.date_updated}>{updatedAt}</p>
             <p className={styles.author}>{username}</p>
         </div>
         {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemovePost}>Xóa</Button>}
