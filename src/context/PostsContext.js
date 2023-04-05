@@ -5,12 +5,15 @@ const PostsContext = createContext()
 
 const PostsProvider = ({children})=>{ 
     const {post,setPost} = useContext(PostContext) 
-    const [posts,setPosts] = useState([]);
-    let postsResult
+    const [posts,setPosts] = useState([]); 
+
+    let data
     useEffect(  () => {
         async function getPosts (callback){
-            postsResult = await getPublicPosts()  
-            setPosts(postsResult)   
+            data = await getPublicPosts(1)  
+            const postsResult = data.postsResult
+             
+            setPosts(data)   
             callback(postsResult)     
              
         }

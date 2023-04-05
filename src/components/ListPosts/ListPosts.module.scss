@@ -34,5 +34,24 @@
     display: flex; 
     justify-content: space-around;
 }
+.page_number{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    
+}
+.page_number li{
+    list-style: none;
+    border-radius: 50%;
+    padding: 2px 8px;
+    border: 1px solid #414141;
+    &:hover{
+        color: red;
+        background-color: aquamarine;
+    }
+}
  
- 
+.page_no_selected{
+    background-color: #414141;
+    color:#F5F5F5;
+}
