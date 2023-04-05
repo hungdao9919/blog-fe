@@ -6,14 +6,13 @@ import { useContext,useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 import deleteComment from '../../services/deleteComment';
 import Button from '../Button'; 
-function CommentDetails({index,profileImage,username,commentcontent,datecreated,userid,_id}){    
+function CommentDetails({index,profileImage,username,commentcontent,createdAt,userid,_id}){    
     const globalContext = useContext(GlobalContext)
     const [del, setDel] = useState(false)
 
     const handleRemoveComment =  (_id) => async ()=>{
         const deleteCommentResult =  await deleteComment(_id)
-        if(deleteCommentResult.status === 204){
-            console.log('remove comment', _id)
+        if(deleteCommentResult.status === 204){ 
             setDel(true)
         }
     }   
@@ -21,7 +20,7 @@ function CommentDetails({index,profileImage,username,commentcontent,datecreated,
         <img className={styles.profile_image} src={`${hostAPI}/${profileImage}`} />   
         <p className={styles.username}>{username}</p>   
         <p className={styles.comment_content}>{commentcontent}</p>
-        <p className={styles.date_created}>{datecreated}</p> 
+        <p className={styles.date_created}>{createdAt}</p> 
     {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemoveComment(_id)}>Xóa</Button>}
 </div>  )
 }

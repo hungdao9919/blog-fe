@@ -22,6 +22,7 @@ function Comment(){
         async function getComments (){  
             if(post._id){
                 const commentsResult  = await getPublicComment(post._id)   
+                 
                 if(commentsResult.status === 200){ 
                     setPost(prev=>({...prev,'comments':commentsResult.data}))
                 }
@@ -33,10 +34,9 @@ function Comment(){
         }
         getComments()    
         
-},[post._id])     
-     
+},[post._id])      
     return (<div className={styles.wrapper}> 
-
+        {console.log('Render comment')} 
         <form onSubmit={handleCreateComment}>
             <div className={styles.post_editor_container}>
                 <label htmlFor="comment"><b>Bình luận về bài viết này</b></label>
@@ -46,7 +46,7 @@ function Comment(){
         </form> 
         
         {(post?.comments?.length > 0 ? post.comments.map((comment,index)=>{  
-            return  <CommentDetails key={index} profileImage={comment.profileImage} username ={comment.username}  commentcontent ={comment.commentcontent}  datecreated={comment.createdAt}  userid ={comment.userid}  _id ={comment._id} />
+            return  <CommentDetails key={index} profileImage={comment.profileImage} username ={comment.username}  commentcontent ={comment.commentcontent}  createdAt={comment.createdAt}  userid ={comment.userid}  _id ={comment._id} />
         }):<div>Không có bình luận nào về bài viết này</div>)}
     </div>)
                 
