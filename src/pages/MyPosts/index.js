@@ -1,20 +1,19 @@
 import styles from './Posts.module.scss'  
-import ListPosts from "../../components/ListPosts"; 
-import PostDetail from '../../components/PostDetail' 
-import { useContext,useEffect,useState } from 'react';
-import { PostContext } from '../../context/PostContext';
+import ListPosts from "../../components/ListPosts";  
+import { useContext,useEffect } from 'react'; 
 import { PostsContext } from '../../context/PostsContext';
 import { GlobalContext } from '../../context/GlobalContext';
 import getPublicPosts from '../../services/getPublicPosts';
-  function MyPosts (){  
-    const {post,setPost}= useContext(PostContext)
+  function MyPosts (){   
     const {posts,setPosts} = useContext(PostsContext)
-    const globalContext = useContext(GlobalContext) 
+    const globalContext = useContext(GlobalContext)  
     let data
     useEffect(  () => {
-        if(globalContext?.profileInfo?._id){
+        if(globalContext.profileInfo){
             async function getPosts (){
+                console.log('get post boi id user')
                 data = await getPublicPosts(1,globalContext.profileInfo._id)  
+                console.log(data)
                 const postsResult = data.postsResult
                 setPosts(data)        
                  
@@ -28,9 +27,7 @@ import getPublicPosts from '../../services/getPublicPosts';
         <div className={styles.sidebar_container}> 
            <ListPosts/>
         </div>
-        {/* <div className={styles.content_container}> 
-            <PostDetail/>
-        </div> */}
+        
     </div>  
     </div>
      

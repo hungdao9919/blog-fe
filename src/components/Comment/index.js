@@ -1,17 +1,15 @@
 import styles from './Comment.module.scss'  
-import { useContext, useState,useEffect } from 'react';
-import { PostContext } from '../../context/PostContext'; 
+import { useContext, useState,useEffect } from 'react'; 
 import createComment from '../../services/createComment'; 
 import CommentDetails from '../CommentDetails';
 import getPublicComment from '../../services/getPublicComments'; 
 import {GlobalContext} from '../../context/GlobalContext' 
 function Comment(){    
-    const {post,setPost} = useContext(PostContext)     
+    const {post,setPost} = useContext(GlobalContext)     
     const [comment, setComment] =useState('')
     const globalContext = useContext(GlobalContext) 
     const handleCreateComment =async(e)=>{
-        e.preventDefault();
-
+        e.preventDefault(); 
         const createCommentResult =  await createComment(post._id,comment)   
         const newComment ={...createCommentResult.data,'profileImage':globalContext.profileInfo.profileImage,'username':globalContext.profileInfo.username}
         let sortedComments = post.comments.length > 0 ? post.comments.unshift(newComment) : post.comments.push(newComment)

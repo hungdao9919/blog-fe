@@ -1,5 +1,5 @@
 import styles from './Profile.module.scss'
-import {  useContext,useEffect } from 'react';
+import {  useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalContext'; 
 import {hostAPI} from '../../services/configs'   
 function Profile(){

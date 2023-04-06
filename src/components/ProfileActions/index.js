@@ -6,16 +6,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import {  useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 import { hostAPI } from '../../services/configs';
-import logOut from '../../services/logOut';
+import logOut from '../../services/logOut'; 
 function ProfileActions(){ 
     const navigate = useNavigate();
+     
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged  
     const profileInfo = globalContext.profileInfo   
+    const setPost = globalContext.setPost    
     const handleLogout = async ()=>{
         await logOut() 
         navigate('/')  
         navigate(0) 
+        
+    }
+    const handleCreatePost = async ()=>{ 
+        setPost({})
+         
+        navigate('/editor') 
         
     }
     return <div className={styles.container}>
@@ -27,7 +35,7 @@ function ProfileActions(){
         
         {
             isLogged &&
-            <Button to={'/editor'} rounded small secondary>Create post</Button>
+            <Button onClick={handleCreatePost} rounded small secondary>Create post</Button>
         }
 
         {

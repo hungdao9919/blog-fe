@@ -7,6 +7,8 @@ const GlobalProvider = ({children})=>{
     const [isAdmin, setIsAdmin] = useState(false) 
     const [isLogged, setIsLogged] = useState(false) 
     const [profileInfo, setProfileInfo] = useState()  
+    const [post,setPost] =useState({})    
+     
     // profile info
     useEffect(()=>{
         async function handleGetProfileInfo (){
@@ -41,7 +43,7 @@ const GlobalProvider = ({children})=>{
 
      
      
-    return <GlobalContext.Provider value={{isAdmin, setIsAdmin,isLogged, setIsLogged,profileInfo, setProfileInfo}}>
+    return <GlobalContext.Provider value={{isAdmin, setIsAdmin,isLogged, setIsLogged,profileInfo, setProfileInfo,post,setPost}}>
         {children}
     </GlobalContext.Provider>
 }

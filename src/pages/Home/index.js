@@ -1,12 +1,9 @@
 import styles from './Home.module.scss'
 import ListPosts from "../../components/ListPosts"; 
-import PostDetail from '../../components/PostDetail' 
-import { useEffect,useState,useContext } from 'react';
-import { PostContext } from '../../context/PostContext';
+import { useEffect,useContext } from 'react'; 
 import { PostsContext } from '../../context/PostsContext';
-import getPublicPosts from '../../services/getPublicPosts';
+import getPublicPosts from '../../services/getPublicPosts'; 
 function Home(){ 
-    const {post,setPost}= useContext(PostContext)
     const {posts,setPosts} = useContext(PostsContext)
     let data
     useEffect(  () => {
