@@ -1,6 +1,7 @@
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom' 
-import Posts from './pages/Posts'
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'  
 import ListPosts from './components/ListPosts'
+import Home from './pages/Home'
+import MyPosts from './pages/MyPosts'
 import { PostsProvider } from './context/PostsContext'
 import Profile from './pages/Profile'
 import Login from './pages/Login'
@@ -9,6 +10,7 @@ import PostEditor from './pages/PostEditor'
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
 import { PostProvider } from './context/PostContext'
 import {PostEditorProvider} from './context/PostEditorContext'
+import PostDetail from './components/PostDetail'
 function App() { 
 
   return (
@@ -21,18 +23,29 @@ function App() {
             <PostProvider>
               <PostsProvider>
                 <PostEditorProvider>
-                <Posts/>
+                <Home/>
                 </PostEditorProvider>
               </PostsProvider>
             </PostProvider>
           </HeaderOnlyLayout>
           }/> 
-          <Route path='/posts' element={
+          <Route path='/post-details/:id' element={
+          <HeaderOnlyLayout>
+            <PostProvider>
+              <PostsProvider>
+                <PostEditorProvider>
+                <PostDetail/>
+                </PostEditorProvider>
+              </PostsProvider>
+            </PostProvider>
+          </HeaderOnlyLayout>
+          }/> 
+          <Route path='/myposts' element={
           <HeaderOnlyLayout>
             <PostProvider>
               <PostsProvider>  
               <PostEditorProvider>
-                <ListPosts/>
+                <MyPosts/>
               </PostEditorProvider>
               </PostsProvider>
             </PostProvider>

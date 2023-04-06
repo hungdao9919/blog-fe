@@ -1,10 +1,11 @@
 import styles from './Profile.module.scss'
-import {  useContext } from 'react';
+import {  useContext,useEffect } from 'react';
 import { GlobalContext } from '../../context/GlobalContext'; 
-import {hostAPI} from '../../services/configs' 
+import {hostAPI} from '../../services/configs'   
 function Profile(){
     const globalContext = useContext(GlobalContext) 
-    const profileInfo = globalContext.profileInfo    
+    const profileInfo = globalContext.profileInfo   
+     
     const result = !profileInfo ? <h2>Vui lòng đăng nhập</h2> : <div className={styles.container} >
         {console.log('Profile render')}
         <h2>{profileInfo._id}</h2>

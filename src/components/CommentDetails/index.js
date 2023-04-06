@@ -11,9 +11,13 @@ function CommentDetails({index,profileImage,username,commentcontent,createdAt,us
     const [del, setDel] = useState(false)
 
     const handleRemoveComment =  (_id) => async ()=>{
-        const deleteCommentResult =  await deleteComment(_id)
-        if(deleteCommentResult.status === 204){ 
-            setDel(true)
+        if(window.confirm(`Bạn có muốn xóa comment ${commentcontent}`)){
+    
+           
+            const deleteCommentResult =  await deleteComment(_id)
+            if(deleteCommentResult.status === 204){ 
+                setDel(true)
+            }
         }
     }   
     return (del || <div key={index} className={styles.container}>

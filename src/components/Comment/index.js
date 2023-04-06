@@ -8,7 +8,7 @@ import {GlobalContext} from '../../context/GlobalContext'
 function Comment(){    
     const {post,setPost} = useContext(PostContext)     
     const [comment, setComment] =useState('')
-    const globalContext = useContext(GlobalContext)
+    const globalContext = useContext(GlobalContext) 
     const handleCreateComment =async(e)=>{
         e.preventDefault();
 
@@ -37,13 +37,15 @@ function Comment(){
 },[post._id])      
     return (<div className={styles.wrapper}> 
         {console.log('Render comment')} 
-        <form onSubmit={handleCreateComment}>
+        { globalContext.isLogged &&
+            <form onSubmit={handleCreateComment}>
             <div className={styles.post_editor_container}>
                 <label htmlFor="comment"><b>Bình luận về bài viết này</b></label>
                 <textarea rows="4" cols="50" onChange={(e)=>setComment(e.target.value)} value={comment}  type="text" placeholder="Enter content" name="comment" required/>
                 <button type="submit">Post</button>                 
             </div>
         </form> 
+        }
         
         {(post?.comments?.length > 0 ? post.comments.map((comment,index)=>{  
             return  <CommentDetails key={index} profileImage={comment.profileImage} username ={comment.username}  commentcontent ={comment.commentcontent}  createdAt={comment.createdAt}  userid ={comment.userid}  _id ={comment._id} />

@@ -14,7 +14,9 @@ function ProfileActions(){
     const profileInfo = globalContext.profileInfo   
     const handleLogout = async ()=>{
         await logOut() 
-        navigate(0)
+        navigate('/')  
+        navigate(0) 
+        
     }
     return <div className={styles.container}>
         {console.log('Render ProfileActions')} 
