@@ -13,7 +13,7 @@ import getPublicPosts from '../../services/getPublicPosts';
             async function getPosts (){
                 console.log('get post boi id user')
                 data = await getPublicPosts(1,globalContext.profileInfo._id)  
-                console.log(data)
+                
                 const postsResult = data.postsResult
                 setPosts(data)        
                  

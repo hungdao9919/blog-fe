@@ -8,6 +8,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import PostEditor from './pages/PostEditor'  
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
+import Setting from './pages/Setting'
+import AboutUs from '../src/pages/AboutUs'
 // import { PostProvider } from './context/PostContext' 
 import PostDetail from './components/PostDetail'
 function App() { 
@@ -49,7 +51,12 @@ function App() {
           <HeaderOnlyLayout>
               <Profile/>
           </HeaderOnlyLayout>}/>
+          <Route path='/setting' element={
+          <HeaderOnlyLayout>
+              <Setting/>
+          </HeaderOnlyLayout>}/>
           <Route path='/login' element={<HeaderOnlyLayout><Login/></HeaderOnlyLayout>}/>
+          <Route path='/about-us' element={<HeaderOnlyLayout><AboutUs/></HeaderOnlyLayout>}/>
           <Route path='/register' element={<HeaderOnlyLayout><Register/></HeaderOnlyLayout>}/>
           <Route path='/editor' element={ 
           <HeaderOnlyLayout>

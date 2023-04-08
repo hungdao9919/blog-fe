@@ -26,6 +26,12 @@ function ProfileActions(){
         navigate('/editor') 
         
     }
+    const handleSetting = async ()=>{ 
+         
+         
+        navigate('/setting') 
+        
+    }
     return <div className={styles.container}>
         {console.log('Render ProfileActions')} 
          {
@@ -58,6 +64,7 @@ function ProfileActions(){
             <div className={styles.menu_container}>
             <ul>
                 <li><Link to={'/profile'}>Profile page</Link></li>
+                <li onClick={handleSetting}>Setting</li>
                 <li onClick={handleLogout}>Log out</li>
             </ul>
             </div>
