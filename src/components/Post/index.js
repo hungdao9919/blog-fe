@@ -4,12 +4,12 @@ import { GlobalContext } from '../../context/GlobalContext';
 import Button from '../Button';
 import deletePost from '../../services/deletePost' 
 import { Navigate, useNavigate } from 'react-router-dom';  
+import Username from '../Username';
 function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){ 
     const {post,setPost} = useContext(GlobalContext)
     const [del, setDel] = useState(false)
     const navigate = useNavigate(Navigate)
-    const globalContext = useContext(GlobalContext)   
-     
+    const globalContext = useContext(GlobalContext) 
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
         if(window.confirm(`Bạn có muốn xóa post ${title}`)){
@@ -34,6 +34,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
         navigate(`/post-details/${_id}`)   
     
     } 
+ 
     return ( del || <div onClick={handleSelectPost } className={styles.container}>
         {console.log('Render Post')}
         <p className={styles.title}>{title}</p>
@@ -41,7 +42,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
         <div className={styles.details}>
             <p className={styles.date_created}>{createdAt}</p>
             <p className={styles.date_updated}>{updatedAt}</p>
-            <p className={styles.author}>{username}</p>
+            <Username  username={username}/> 
         </div>
         {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemovePost}>Xóa</Button>}
         {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleEditPost}>Sửa</Button>}
