@@ -45,13 +45,13 @@ function Register(){
                 <p>Please fill in this form to create an account.</p>
                  
                 <label htmlFor="uname"><b>Username</b></label>
-                <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder="Enter Username" name="uname" required/>
+                <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder="Enter Username" id="uname"  name="uname" required/>
 
                 <label htmlFor="firstname"><b>First name</b></label>
-                <input onChange={(e)=>setFirstname(e.target.value)} value={firstname} type="text" placeholder="Enter First name" name="firstname" required/>
+                <input onChange={(e)=>setFirstname(e.target.value)} value={firstname} type="text" placeholder="Enter First name"  id="firstname" name="firstname" required/>
 
                 <label htmlFor="lastname"><b>Last name</b></label>
-                <input onChange={(e)=>setLastname(e.target.value)} value={lastname} type="text" placeholder="Enter lastname" name="lastname" required/>
+                <input onChange={(e)=>setLastname(e.target.value)} value={lastname} type="text" placeholder="Enter lastname" id="lastname" name="lastname" required/>
 
                 <label htmlFor="email"><b>Email</b></label>
                 <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="text" placeholder="Enter Email" name="email" id="email" required/>
