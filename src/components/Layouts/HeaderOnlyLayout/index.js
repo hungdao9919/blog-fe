@@ -1,3 +1,4 @@
+import Footer from '../../Footer'
 import Header from '../../Header'
  
 function HeaderOnlyLayout({children}){
@@ -9,6 +10,7 @@ function HeaderOnlyLayout({children}){
             <div className='container'>
                 <div className='content'>{children}</div>
             </div>
+            <Footer/>
         </div>
     )
 }
