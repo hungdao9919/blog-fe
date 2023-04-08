@@ -21,8 +21,9 @@ function CommentDetails({index,profileImage,username,commentcontent,createdAt,us
             }
         }
     }   
+    const profieImag2 = profileImage.includes()
     return (del || <div key={index} className={styles.container}>
-        <img className={styles.profile_image} src={`${hostAPI}/${profileImage}`} /> 
+        <img className={styles.profile_image} src={`${profileImage}`} /> 
         <Username username={username} />   
         <p className={styles.comment_content}>{commentcontent}</p>
         <p className={styles.date_created}>{createdAt}</p> 

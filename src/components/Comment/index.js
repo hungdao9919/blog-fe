@@ -12,7 +12,7 @@ function Comment(){
         e.preventDefault(); 
         const createCommentResult =  await createComment(post._id,comment)   
         const newComment ={...createCommentResult.data,'profileImage':globalContext.profileInfo.profileImage,'username':globalContext.profileInfo.username}  
-        let sortedComments = post?.comments?.length > 0 ? post.comments.unshift(newComment) : post.comments.push(newComment)
+        let sortedComments = post?.comments?.length > 0 ? post.comments.unshift(newComment) : post.comments =[newComment]
         setPost(prev=>({'comments':(sortedComments),...prev})) 
         setComment('')
     }          
@@ -21,7 +21,7 @@ function Comment(){
             if(post._id){
                 const commentsResult  = await getPublicComment(post._id)   
                  
-                if(commentsResult.status == 200 || commentsResult.status == 204){ 
+                if(commentsResult.status == 200 || commentsResult.status == 204){  
                     const allComments = commentsResult.data?commentsResult.data:[] 
                      
                     setPost(prev=>({...prev,'comments':allComments}))

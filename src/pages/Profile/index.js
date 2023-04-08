@@ -15,7 +15,7 @@ function Profile(){
         <h2>{JSON.stringify(profileInfo.roles)}</h2>
         <h2>{profileInfo.email}</h2>
         <h2>{profileInfo.joindate}</h2>
-        <img src={`${hostAPI}${profileInfo.profileImage.slice(2)}`}/>
+        <img src={`${profileInfo.profileImage}`}/>
         <div className={styles.post_list}>
             {}
         </div>

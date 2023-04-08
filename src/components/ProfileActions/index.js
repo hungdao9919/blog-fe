@@ -54,7 +54,7 @@ function ProfileActions(){
             <div className={styles.profile_container}>
                 <p className={styles.profile_name}>{`${profileInfo.lastname} ${profileInfo.firstname}`}</p>
                 <Link to={'/profile'} >
-                <img src={`${hostAPI}${profileInfo.profileImage.slice(2)}`}/>
+                <img src={`${profileInfo.profileImage}`}/>
             </Link>
             </div>
         }

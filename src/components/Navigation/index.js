@@ -14,8 +14,7 @@ function Navigation(){
         {console.log('navigation render')}
         <Button primary underline className={styles.nav_item} to={'/'}>Home</Button>
         <Button primary underline className={styles.nav_item} to={'/about-us'}>About Us</Button>
-        {isLogged && <Button primary underline className={styles.nav_item} to={'/myposts'}>My Posts</Button> }
-       {isAdmin && <Button primary underline className={styles.nav_item} to={'/editor'}>Admin page</Button>} 
+        {isLogged && <Button primary underline className={styles.nav_item} to={'/myposts'}>My Posts</Button> } 
     </div>
 }  
 export default Navigation;
