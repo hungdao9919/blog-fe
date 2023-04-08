@@ -5,14 +5,14 @@ import CommentDetails from '../CommentDetails';
 import getPublicComment from '../../services/getPublicComments'; 
 import {GlobalContext} from '../../context/GlobalContext' 
 function Comment(){    
-    const {post,setPost} = useContext(GlobalContext)     
+    const {post,setPost} = useContext(GlobalContext)      
     const [comment, setComment] =useState('')
     const globalContext = useContext(GlobalContext) 
-    const handleCreateComment =async(e)=>{
+    const handleCreateComment = async (e)=>{
         e.preventDefault(); 
         const createCommentResult =  await createComment(post._id,comment)   
-        const newComment ={...createCommentResult.data,'profileImage':globalContext.profileInfo.profileImage,'username':globalContext.profileInfo.username}
-        let sortedComments = post.comments.length > 0 ? post.comments.unshift(newComment) : post.comments.push(newComment)
+        const newComment ={...createCommentResult.data,'profileImage':globalContext.profileInfo.profileImage,'username':globalContext.profileInfo.username}  
+        let sortedComments = post?.comments?.length > 0 ? post.comments.unshift(newComment) : post.comments.push(newComment)
         setPost(prev=>({'comments':(sortedComments),...prev})) 
         setComment('')
     }          
@@ -21,20 +21,24 @@ function Comment(){
             if(post._id){
                 const commentsResult  = await getPublicComment(post._id)   
                  
-                if(commentsResult.status === 200){ 
-                    setPost(prev=>({...prev,'comments':commentsResult.data}))
+                if(commentsResult.status == 200 || commentsResult.status == 204){ 
+                    const allComments = commentsResult.data?commentsResult.data:[] 
+                     
+                    setPost(prev=>({...prev,'comments':allComments}))
                 }
                 else{
                     setPost(prev=>({...prev,'comments':[]}))
 
                 }
-            }
+            }   
         }
         getComments()    
+        
         
 },[post._id])      
     return (<div className={styles.wrapper}> 
         {console.log('Render comment')} 
+        {console.log(post._id)} 
         { globalContext.isLogged &&
             <form onSubmit={handleCreateComment}>
             <div className={styles.post_editor_container}>

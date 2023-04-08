@@ -5,7 +5,8 @@ import { hostAPI } from '../../services/configs';
 import { useContext,useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 import deleteComment from '../../services/deleteComment';
-import Button from '../Button'; 
+import Button from '../Button';  
+import Username from '../Username';
 function CommentDetails({index,profileImage,username,commentcontent,createdAt,userid,_id}){    
     const globalContext = useContext(GlobalContext)
     const [del, setDel] = useState(false)
@@ -21,8 +22,8 @@ function CommentDetails({index,profileImage,username,commentcontent,createdAt,us
         }
     }   
     return (del || <div key={index} className={styles.container}>
-        <img className={styles.profile_image} src={`${hostAPI}/${profileImage}`} />   
-        <p className={styles.username}>{username}</p>   
+        <img className={styles.profile_image} src={`${hostAPI}/${profileImage}`} /> 
+        <Username username={username} />   
         <p className={styles.comment_content}>{commentcontent}</p>
         <p className={styles.date_created}>{createdAt}</p> 
     {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemoveComment(_id)}>Xóa</Button>}

@@ -7,7 +7,7 @@ import { Navigate,useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import getPublicPosts from '../../services/getPublicPosts';
 import { useLocation } from 'react-router-dom';
-
+import Username from '../Username';
 function PostDetail (){ 
     
     {console.log('render post detail')}
@@ -17,16 +17,15 @@ function PostDetail (){
     const globalContext = useContext(GlobalContext) 
     const postId =location.pathname.split('/')[2];  
     let data
-    useEffect(  () => { 
-         
+    useEffect(  () => {  
         async function getPosts (){
-            data = await getPublicPosts('','',postId)  
+            data = await getPublicPosts('','',postId)   
             setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username}) 
             
              
         }
         getPosts()
-    },[globalContext.profileInfo])
+    },[])
      
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
@@ -55,6 +54,7 @@ function PostDetail (){
         <p className={styles.post_datecreated}>{`createdAt ${post.createdAt}`}</p>
         <p className={styles.post_datemodify}>{`updatedAt ${post.updatedAt}`}</p> 
         <p className={styles.post_username}>{`username ${post.username}`}</p>
+        <Username username ={post.username} />
         <Comment/>
         </div> 
      
