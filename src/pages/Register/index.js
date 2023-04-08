@@ -3,7 +3,8 @@ import {useState} from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
 import register from '../../services/register'
 import { GlobalContext } from '../../context/GlobalContext';
-import { useContext } from 'react' 
+import uploadFile from '../../services/uploadFile';
+import { useContext } from 'react'  
 function Register(){ 
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged
@@ -14,22 +15,28 @@ function Register(){
     const [firstname, setFirstname] = useState('') 
     const [lastname, setLastname] = useState('') 
     const [email, setEmail] = useState('')  
+    const [profileImage, setProfileImage] = useState()  
+    
+    console.log(profileImage)
     if(isLogged){
         navigate('/')
     }
+
     const handleSubmit =async (e)=>{
             e.preventDefault(); 
-             
-            const registerResult =await register(username,password,email,lastname,firstname)
+            const imageResult = await uploadFile(profileImage)
+            const registerResult =await register(username,password,email,lastname,firstname,imageResult)
             if(registerResult.status ===201){
                 navigate('/')
                 navigate(0)     
             }
             else{
                 console.log(registerResult)
-            }            
-    }
-    
+            }     
+           
+        
+    }   
+   
     return <div className={styles.login_wrapper}>
          {console.log('Render Register form')}
         <form onSubmit={handleSubmit} action="action_page.php">
@@ -49,6 +56,9 @@ function Register(){
                 <label htmlFor="email"><b>Email</b></label>
                 <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="text" placeholder="Enter Email" name="email" id="email" required/>
 
+                <label htmlFor="profileImage"><b>Profile Image</b></label>
+                <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" id="profileImage" name="profileImage" accept="image/*" required/>
+
                 <label htmlFor="psw"><b>Password</b></label>
                 <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Enter Password" name="psw" id="psw" required/>
 
@@ -57,7 +67,7 @@ function Register(){
                
 
                  
-                <button type="submit" className="registerbtn">Register</button>
+                <button  type="submit" className="registerbtn">Register</button>
             </div>
 
             <div className="container signin">
