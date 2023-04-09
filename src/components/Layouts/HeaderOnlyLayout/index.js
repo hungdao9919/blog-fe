@@ -1,5 +1,6 @@
 import Footer from '../../Footer'
 import Header from '../../Header'
+import styles from './HeaderOnlyLayout.module.scss'
  
 function HeaderOnlyLayout({children}){
 
@@ -7,7 +8,7 @@ function HeaderOnlyLayout({children}){
     return (
         <div>
             <Header/>
-            <div className='container'>
+            <div className={styles.content_container}>
                 <div className='content'>{children}</div>
             </div>
             <Footer/>

@@ -11,9 +11,12 @@ import { GlobalContext } from '../../context/GlobalContext';
     const globalContext = useContext(GlobalContext)
     const {posts,setPosts} = useContext(PostsContext) 
     const pageNo =[]
-    for(let i = 1 ; i <= posts.totalPage ; i++){
-        pageNo.push(i)
-    }  
+    if(posts.totalPage > 1){
+        
+        for(let i = 1 ; i <= posts.totalPage ; i++){
+            pageNo.push(i)
+        }  
+    }
      
     const handleSelectPageNo =  async(pageNoitem)=>{
         if(pageNoitem != posts.pageNo){
@@ -29,24 +32,23 @@ import { GlobalContext } from '../../context/GlobalContext';
             }
             
         } 
-        
+         
          
     }
     return <div className={styles.wrapper}>
-    <div className={styles.container}>
-        <div className={styles.sidebar_container}>
+    <div className={styles.container}> 
             {console.log('Render ListPosts')}
-            <p>Danh sách bài viết </p>
-            <div className={styles.page_number}>
-                { 
-                pageNo.map((pageNoitem,index) =>{
-                    return <li className={pageNoitem==posts.pageNo?styles.page_no_selected:''} key={index} onClick={()=>handleSelectPageNo(pageNoitem)}>{pageNoitem}</li>
-                })
-                }
-            </div>
+             
             {posts?.postsResult?.length > 0 && posts.postsResult.map((post,index)=><Post  key={index} _id={post._id} userid={post.userid}  title={post.title} updatedAt={post.updatedAt} postcontent={post.postcontent} createdAt={post.createdAt} username={post.username}  />)}
-        </div> 
+        
     </div>   
+    <div className={styles.page_number}>
+        { pageNo.length > 0 &&
+        pageNo.map((pageNoitem,index) =>{
+            return <li className={pageNoitem==posts.pageNo?styles.page_no_selected:''} key={index} onClick={()=>handleSelectPageNo(pageNoitem)}>{pageNoitem}</li>
+        })
+        }
+    </div>
     </div>
      
     

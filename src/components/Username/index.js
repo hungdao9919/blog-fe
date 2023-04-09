@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './Username.module.scss'  
 import UserDetail from '../UserDetail'      
-function Username ({username}){ 
+function Username ({username,...props}){ 
     const [show,setShow] = useState(false)
      
     const handleOnClickUsername=(e)=>{
@@ -13,9 +13,9 @@ function Username ({username}){
         setShow(false)
      }
     
-    return <div onClick={handleOnClickUsername} onMouseOut={handleOnMouseOut}>
-        <p className={styles.username}>{username}</p>
-       {show && <UserDetail  username={username}/>}
+    return <div {...props} onClick={handleOnClickUsername} onMouseOut={handleOnMouseOut}>
+        <p  className={styles.username}>{username}</p>
+        {show && <UserDetail  username={username}/>}
         </div> 
      
     

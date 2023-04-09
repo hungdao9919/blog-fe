@@ -1,8 +1,7 @@
 import styles from './PostEditor.module.scss'
 import { useEffect, useState } from 'react' 
 import createPost from '../../services/createPost' 
-import { useNavigate} from 'react-router-dom'
-
+import { useNavigate} from 'react-router-dom' 
 import { GlobalContext } from '../../context/GlobalContext';
 import { useContext } from 'react'  
 import updatePost from '../../services/updatePost'
@@ -10,6 +9,7 @@ function PostEditor(){
     const navigate = useNavigate();
 
     const globalContext = useContext(GlobalContext)  
+    console.log(globalContext)
     const {post,setPost} = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged 
     const [title, setTitle] = useState('')
@@ -31,9 +31,9 @@ function PostEditor(){
     }
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        const  createPostResult = await createPost(title,postcontent) 
-        setTitle('')
-        setPostcontent('')
+        const  createPostResult = await createPost(title,postcontent)  
+        setPost({'_id':createPostResult._id,'title':createPostResult.title,'postcontent':createPostResult.postcontent,'createdAt':createPostResult.createdAt,'updatedAt':createPostResult.updatedAt,'username':globalContext.profileInfo.username}) 
+        navigate(`/post-details/${createPostResult._id}`)
     }
     const handleUpdate = async(e)=>{
         e.preventDefault();
