@@ -15,9 +15,7 @@ function Register(){
     const [firstname, setFirstname] = useState('') 
     const [lastname, setLastname] = useState('') 
     const [email, setEmail] = useState('')  
-    const [profileImage, setProfileImage] = useState()  
-    
-    console.log(profileImage)
+    const [profileImage, setProfileImage] = useState()   
     if(isLogged){
         navigate('/')
     }

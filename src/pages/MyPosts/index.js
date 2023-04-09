@@ -22,13 +22,8 @@ import getPublicPosts from '../../services/getPublicPosts';
         }
     },[globalContext.profileInfo])
        
-    return <div className={styles.wrapper}>
-    <div className={styles.container}>
-        <div className={styles.sidebar_container}> 
-           <ListPosts/>
-        </div>
-        
-    </div>  
+    return <div className={styles.wrapper}> 
+           <ListPosts/> 
     </div>
      
     

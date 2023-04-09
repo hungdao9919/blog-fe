@@ -45,8 +45,7 @@ function App() {
               </PostsProvider>
             
           </HeaderOnlyLayout>
-          }/>
-          {/* <Route path='/posts/:id' element={<DefaultLayout><PostDetail/></DefaultLayout>}/> */}
+          }/> 
           <Route path='/profile' element={
           <HeaderOnlyLayout>
               <Profile/>

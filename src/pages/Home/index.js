@@ -15,13 +15,8 @@ function Home(){
         }
         getPosts()
     },[]) 
-    return <div className={styles.wrapper}>
-    <div className={styles.container}>
-        <div className={styles.sidebar_container}> 
-           <ListPosts/>
-        </div>
-         
-    </div>  
+    return <div className={styles.container}>  
+           <ListPosts/>  
     </div>
 }
 export default Home; 

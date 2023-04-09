@@ -4,8 +4,7 @@ import Button from "../Button";
 import { Link, useNavigate } from 'react-router-dom'; 
 
 import {  useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalContext';
-import { hostAPI } from '../../services/configs';
+import { GlobalContext } from '../../context/GlobalContext'; 
 import logOut from '../../services/logOut'; 
 function ProfileActions(){ 
     const navigate = useNavigate();
