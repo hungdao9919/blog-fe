@@ -5,11 +5,14 @@ import Button from '../Button';
 import deletePost from '../../services/deletePost' 
 import { Navigate, useNavigate } from 'react-router-dom';  
 import Username from '../Username';
+import getDateTimeFromTimeStamp from '../../services/getDateTimeFromTimeStamp';
 function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){ 
     const {post,setPost} = useContext(GlobalContext)
     const [del, setDel] = useState(false)
     const navigate = useNavigate(Navigate)
     const globalContext = useContext(GlobalContext) 
+    const convertedDateObj = getDateTimeFromTimeStamp(createdAt)
+
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
         if(window.confirm(`Bạn có muốn xóa post ${title}`)){
@@ -20,7 +23,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
              setDel(true) 
             } 
         } 
-    } 
+    }    
     const handleEditPost =(e)=>{ 
         e.preventDefault(); 
         e.stopPropagation()
@@ -35,20 +38,27 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
     
     } 
  
-    return ( del || <div onClick={handleSelectPost } className={styles.container}>
+    return ( del || <div className={styles.container}>
         {console.log('Render Post')}
-        <p className={styles.title}>{title}</p>
-        <p className={styles.short_desc}>{postcontent}</p>
-        <div className={styles.details}>
-            <p className={styles.date_created}>{createdAt}</p>
-            <p className={styles.date_updated}>{updatedAt}</p>
-            <Username  username={username}/> 
+        <div className={styles.post_image}>
+        <img  src='https://images.squarespace-cdn.com/content/v1/6049fbc359073d5ced15326e/1628952398975-VWSPETG19PUV2YT54XZ9/working-table-minimalist-desk-setup-ideas-to-improve-work-efficiency_34.jpg' />
+        <div className={styles.post_actions_container}>
+            <Button primary rounded onClick={handleSelectPost} >View Post</Button>  
+            {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <div className={styles.remove_edit_container}>
+                    <Button small primary onClick={handleEditPost}>Edit Post</Button>
+                    <Button small secondary onClick={handleRemovePost}>Delete Post</Button> 
+                </div>}
         </div>
-        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemovePost}>Xóa</Button>}
-        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleEditPost}>Sửa</Button>}
+        </div>
+            <p className={styles.title}>{title}</p>
+            <p className={styles.short_desc}>{postcontent}</p>
+        <div className={styles.details}>
+            <p className={styles.date_created}>{convertedDateObj.hour}:{convertedDateObj.minute}:{convertedDateObj.second} {convertedDateObj.day}/{convertedDateObj.month}/{convertedDateObj.year}</p> 
+            <Username className={styles.username}  username={username}/> 
+        </div>
         
          
     </div>
     )
 } 
-export default Post;
+export default Post; 
