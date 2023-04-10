@@ -1,8 +1,16 @@
 .username{
-    position: relative;
-    padding: 0;
+    position: relative; 
     margin: 0;
-    &:hover{
-        background-color: chocolate;
+    color: var(--primary);
+    max-width: 200px; 
+    & > p{
+        margin: 0 ;
     }
+    &:hover{
+        color: black;
+        cursor: pointer;
+    }
+     
+   
 }
+ 

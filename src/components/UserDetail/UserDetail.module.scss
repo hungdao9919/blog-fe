@@ -1,15 +1,103 @@
 
-.user_detail{
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 50px;
-    right: 50px;
-    width: 500px;
-    text-align: center; 
-    color: black;
-    background-color: rgb(158, 157, 156);   
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    z-index: 999;
+.user_detail{   
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    position: absolute; 
+    right: 0; 
+    min-width: 240px;
+    bottom: 22px;
+    background-color:rgba(229,229,229,255);   
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); 
+    z-index: 1;  
+}
+.background_profile_image{ 
+    filter: blur(3px); 
+    position: absolute; 
+    top: 0;
+    left: 0; 
+    width: 100%;
+    z-index: -1;
+}
+.background_profile_image img{  
+    object-fit: cover; 
+    height: 120px; 
+    width: 100%; 
+
+} 
+.profile_image{
+    display: flex;
+    justify-content: center;
+}
+.profile_image > img{ 
+    width: 140px;    
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid #3333332d;
+    object-fit: cover; 
+}
+.profile_image_img{
+    z-index: 99999;
+}
+.fullname{ 
+    display: block;
+    font-weight: 500;
+    font-size: 2rem; 
+    color: var(--primary);
+    border-top: 1px solid var(--primary);
+    margin: 12px 0;
+    padding-top: 12px;
 
 }
+ 
+.username, .email{ 
+    font-size: 1.4rem; 
+    margin: 0 0 0 8px;
+    line-height: 1.4rem; 
+
+}
+ 
+.profile_statics{
+    margin: 0; 
+    display: flex;
+    color: #857c7c;  
+    font-size: 1.4rem;
+    & p{
+        margin: 0;
+    }
+}
+.username_container{
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    color: #857c7c;
+    & .user_icon{
+        font-size: 1.4rem;
+        line-height: 1.4rem;  
+    }
+}  
+.username_email_container{ 
+    display: flex;
+    align-items: center;
+    color: #857c7c;
+    & .email_icon{
+        font-size: 1.4rem;
+
+        line-height: 1.4rem;  
+
+    }
+} 
+.profile_statics{ 
+    display: flex;
+    margin-top: 12px;
+    align-items: center;
+    color: #857c7c;
+    & .static_icon{
+        font-size: 1.4rem;
+
+        line-height: 1.4rem;  
+
+        margin-right: 8px;
+    }
+} 
