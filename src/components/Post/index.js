@@ -47,14 +47,14 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
             {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <div className={styles.remove_edit_container}>
                     <Button small primary onClick={handleEditPost}>Edit Post</Button>
                     <Button small secondary onClick={handleRemovePost}>Delete Post</Button> 
-                </div>}
+            </div>}
         </div>
         </div>
             <p className={styles.title}>{title}</p>
             <p className={styles.short_desc}>{postcontent}</p>
         <div className={styles.details}>
             <p className={styles.date_created}>{convertedDateObj.hour}:{convertedDateObj.minute}:{convertedDateObj.second} {convertedDateObj.day}/{convertedDateObj.month}/{convertedDateObj.year}</p> 
-            <Username className={styles.username}  username={username}/> 
+            <Username  username={username}/> 
         </div>
         
          

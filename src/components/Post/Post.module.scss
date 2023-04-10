@@ -1,6 +1,7 @@
 .container{
     position: relative;
     width: 30%; 
+    min-width: 300px;
     background-color: #b7d4d8;
     color: #070d0e;
     margin-top: 32px; 
@@ -66,13 +67,7 @@
     line-height: 1rem;
 
 }
-.username{
-    padding: 0;
-    margin: 0;
-    color: var(--primary);
-    line-height: 1rem; 
-
-}
+ 
 .post_actions_container{
     top: 0; 
     left: 0;
