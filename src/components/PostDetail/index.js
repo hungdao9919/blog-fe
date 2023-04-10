@@ -9,6 +9,8 @@ import getPublicPosts from '../../services/getPublicPosts';
 import { useLocation } from 'react-router-dom';
 import Username from '../Username';
 import getDateTimeFromTimeStamp from '../../services/getDateTimeFromTimeStamp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 function PostDetail (){ 
     
     {console.log('render post detail')}
@@ -24,7 +26,7 @@ function PostDetail (){
     useEffect(  () => {  
         async function getPosts (){
             data = await getPublicPosts('','',postId)   
-            setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username}) 
+            setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username,'userid':data.postsResult[0].userid}) 
             
              
         }
@@ -46,17 +48,24 @@ function PostDetail (){
         navigate('/editor')     
         
     } 
-    return <div>
-      
-        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === post.userid) && <Button small primary onClick={handleRemovePost}>Xóa</Button>}
-        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === post.userid) && <Button small primary onClick={handleEditPost}>Sửa</Button>}
-        <p className={styles.post_id}>{post._id}</p>
+    return <div className={styles.post_container}> 
+        <div className={styles.post_details}>
+        <div className={styles.date_container}>
+        <p className={styles.post_datecreated}>Created: {convertedCreatedDateObj.hour}:{convertedCreatedDateObj.minute}:{convertedCreatedDateObj.second} {convertedCreatedDateObj.day}/{convertedCreatedDateObj.month}/{convertedCreatedDateObj.year}</p>
+        <p className={styles.post_datemodify}>Last edited: {convertedUpdatedDateObj.hour}:{convertedUpdatedDateObj.minute}:{convertedUpdatedDateObj.second} {convertedUpdatedDateObj.day}/{convertedUpdatedDateObj.month}/{convertedUpdatedDateObj.year}</p>  
+        </div>
         <p className={styles.post_title}>{post.title}</p>
-        <p className={styles.post_postcontent}>{post.postcontent}</p>
-        <p className={styles.post_datecreated}>{convertedCreatedDateObj.hour}:{convertedCreatedDateObj.minute}:{convertedCreatedDateObj.second} {convertedCreatedDateObj.day}/{convertedCreatedDateObj.month}/{convertedCreatedDateObj.year}</p>
-        <p className={styles.post_datemodify}>{convertedUpdatedDateObj.hour}:{convertedUpdatedDateObj.minute}:{convertedUpdatedDateObj.second} {convertedUpdatedDateObj.day}/{convertedUpdatedDateObj.month}/{convertedUpdatedDateObj.year}</p> 
-        <p className={styles.post_username}>{post.username}</p>
-        <Username username ={post.username} />
+
+        <p className={styles.post_postcontent}>{post.postcontent}</p>   
+        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === post.userid) && <div className={styles.actions_container}>
+        <Button small primary onClick={handleEditPost}>Edit post</Button>
+        <Button small secondary onClick={handleRemovePost}>Delete post</Button>
+        </div>}
+        <div className={styles.author}>
+            <FontAwesomeIcon className={styles.author_icon} icon={faUserAstronaut}/> 
+            <Username username ={post.username} />
+        </div>
+        </div> 
         <Comment/>
         </div> 
      

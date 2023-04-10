@@ -1,0 +1,45 @@
+.post_title{
+    font-size: 4rem;
+    font-weight: 500;
+    margin: 30px 0 20px 0; 
+    color:#857c7c;
+    text-align: center;
+}
+.author{ 
+    display: flex;
+    float: right;
+    & .author_icon{
+        margin-right: 8px;
+        color:#857c7c; 
+    }
+}
+.post_details{
+    padding: 28px;
+}
+.actions_container{
+    float: left;
+}
+.post_postcontent{
+    font-size: 1.6rem;
+    color:#686161;
+    line-height: 2.6rem;  
+    text-align: justify;
+}
+.date_container{
+    display: flex;
+    color:#686161;
+    justify-content: space-between; 
+    margin: 20px 0 16px 0;
+    font-size: 1.4rem; 
+    font-style: italic;
+
+}
+.post_datecreated,.post_datemodify{ 
+    margin: 0;
+}
+.post_datemodify{
+
+}
+.post_infor{
+
+}
