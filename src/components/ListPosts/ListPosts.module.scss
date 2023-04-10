@@ -1,4 +1,3 @@
- 
 .wrapper{ 
     max-width: 1150px;
     width: 100%;
@@ -24,9 +23,8 @@
     border-radius: 100%; 
     padding: 4px 9px;
     border: 1px solid #414141;
-    &:hover{
-        color: red;
-        background-color: aquamarine;
+    &:hover{ 
+        background-color: rgb(164, 165, 165);
     }
 }
  
