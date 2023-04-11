@@ -49,24 +49,28 @@ function PostDetail (){
         
     } 
     return <div className={styles.post_container}> 
-        <div className={styles.post_details}>
-        <div className={styles.date_container}>
-        <p className={styles.post_datecreated}>Created: {convertedCreatedDateObj.hour}:{convertedCreatedDateObj.minute}:{convertedCreatedDateObj.second} {convertedCreatedDateObj.day}/{convertedCreatedDateObj.month}/{convertedCreatedDateObj.year}</p>
-        <p className={styles.post_datemodify}>Last edited: {convertedUpdatedDateObj.hour}:{convertedUpdatedDateObj.minute}:{convertedUpdatedDateObj.second} {convertedUpdatedDateObj.day}/{convertedUpdatedDateObj.month}/{convertedUpdatedDateObj.year}</p>  
-        </div>
+        
+        
         <p className={styles.post_title}>{post.title}</p>
 
         <p className={styles.post_postcontent}>{post.postcontent}</p>   
-        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === post.userid) && <div className={styles.actions_container}>
-        <Button small primary onClick={handleEditPost}>Edit post</Button>
-        <Button small secondary onClick={handleRemovePost}>Delete post</Button>
-        </div>}
-        <div className={styles.author}>
-            <FontAwesomeIcon className={styles.author_icon} icon={faUserAstronaut}/> 
-            <Username username ={post.username} />
-        </div>
-        </div> 
+        <div className={styles.statics_infor}>
+            {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === post.userid) && <div className={styles.actions_container}>
+            <Button small primary onClick={handleEditPost}>Edit post</Button>
+            <Button small secondary onClick={handleRemovePost}>Delete post</Button>
+            </div>}
+            <div className={styles.author}>
+                <FontAwesomeIcon className={styles.author_icon} icon={faUserAstronaut}/> 
+                <Username username ={post.username} />
+            </div> 
+            <div className={styles.date_container}>
+            <p className={styles.post_datecreated}>Created: {convertedCreatedDateObj.hour}:{convertedCreatedDateObj.minute}:{convertedCreatedDateObj.second} {convertedCreatedDateObj.day}/{convertedCreatedDateObj.month}/{convertedCreatedDateObj.year}</p>
+            <p className={styles.post_datemodify}>Last edited: {convertedUpdatedDateObj.hour}:{convertedUpdatedDateObj.minute}:{convertedUpdatedDateObj.second} {convertedUpdatedDateObj.day}/{convertedUpdatedDateObj.month}/{convertedUpdatedDateObj.year}</p>  
+            </div>
+            </div>
+        <div className={styles.comments_container}>
         <Comment/>
+        </div>
         </div> 
      
     

@@ -1,11 +1,19 @@
-.post_title{
+ .post_title{
     font-size: 4rem;
     font-weight: 500;
     margin: 30px 0 20px 0; 
     color:#857c7c;
     text-align: center;
 }
+.statics_infor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .author{ 
+    border: 1px solid #dbdbdb;
+    padding: 4px 8px;
+    border-radius: 20px;
     display: flex;
     float: right;
     & .author_icon{
@@ -13,26 +21,29 @@
         color:#857c7c; 
     }
 }
-.post_details{
+.post_container{
     padding: 28px;
 }
 .actions_container{
     float: left;
+}
+.comments_container{
+    margin-top: 20px;
 }
 .post_postcontent{
     font-size: 1.6rem;
     color:#686161;
     line-height: 2.6rem;  
     text-align: justify;
+    border-bottom: #e4e2e280 1px solid ; 
+    padding-bottom: 20px;
 }
-.date_container{
-    display: flex;
-    color:#686161;
-    justify-content: space-between; 
-    margin: 20px 0 16px 0;
+.date_container{ 
+    float: right;
+    color:#686161;  
     font-size: 1.4rem; 
-    font-style: italic;
-
+    font-style: italic; 
+    text-align: right;
 }
 .post_datecreated,.post_datemodify{ 
     margin: 0;
