@@ -1,8 +1,6 @@
 .username{
-    position: relative; 
-    margin: 0;
-    color: var(--primary);
-    max-width: 200px; 
+    position: relative;  
+    color: var(--primary); 
     & > p{
         margin: 0 ;
     }

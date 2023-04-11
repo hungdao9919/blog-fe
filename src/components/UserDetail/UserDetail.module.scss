@@ -1,7 +1,4 @@
-
-.user_detail{   
-    flex-direction: column;
-    align-items: center;
+.user_detail{    
     padding: 16px;
     border-radius: 8px;
     position: absolute; 
@@ -23,8 +20,7 @@
 .background_profile_image img{  
     object-fit: cover; 
     height: 120px; 
-    width: 100%; 
-
+    width: 100%;  
 } 
 .profile_image{
     display: flex;
@@ -69,8 +65,7 @@
 }
 .username_container{
     margin: 0 0 12px 0;
-    display: flex;
-    align-items: center;
+    display: flex; 
     color: #857c7c;
     & .user_icon{
         font-size: 1.4rem;
@@ -78,8 +73,7 @@
     }
 }  
 .username_email_container{ 
-    display: flex;
-    align-items: center;
+    display: flex; 
     color: #857c7c;
     & .email_icon{
         font-size: 1.4rem;
