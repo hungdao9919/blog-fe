@@ -16,8 +16,7 @@ function Comment(){
         const newComment ={...createCommentResult.data,'profileImage':globalContext.profileInfo.profileImage,'username':globalContext.profileInfo.username}  
         let sortedComments = post?.comments?.length > 0 ? post.comments.unshift(newComment) : post.comments =[newComment]
         setPost(prev=>({'comments':(sortedComments),...prev})) 
-        setComment('') 
-
+        setComment('')  
     }          
     useEffect(()=>{
         async function getComments (){  
@@ -64,7 +63,7 @@ function Comment(){
         } 
         {(post?.comments?.length > 0 ? post.comments.map((comment,index)=>{  
             return  <CommentDetails key={index} profileImage={comment.profileImage} username ={comment.username}  commentcontent ={comment.commentcontent}  createdAt={comment.createdAt}  userid ={comment.userid}  _id ={comment._id} />
-        }):<div>No comment yet</div>)}
+        }):<div className={styles.no_comment}>No comment yet</div>)}
     </div>)
                 
 }

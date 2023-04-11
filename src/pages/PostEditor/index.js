@@ -24,7 +24,7 @@ function PostEditor(){
             setTitle('')
             setPostcontent('')
         }
-         
+           
     },[post])
     if(!isLogged){
         navigate('/')
@@ -39,21 +39,31 @@ function PostEditor(){
         e.preventDefault();
         const updateResult = await updatePost(post._id,title,postcontent) 
     }
- 
+    const handleOnChangeTitle = (e)=>{
+        setTitle(e.target.value)
+        e.target.style.height = '0'
+        e.target.style.height = `${e.target.scrollHeight}px` 
+    }
+    const handleOnChangePostContent = (e)=>{
+        setPostcontent(e.target.value)
+        e.target.style.height = '456px'
+        e.target.style.height = `${e.target.scrollHeight}px` 
+    }
     return <div className={styles.post_editor_wrapper}>
         {console.log('Render PostEditor')}
         <form onSubmit={handleSubmit}>
-            <div className={styles.post_editor_container}>
-                <label htmlFor="uname"><b>Title</b></label>
-                <textarea rows="5" cols="90"  onChange={(e)=>setTitle(e.target.value)} value={title} type="text" placeholder="Enter title" name="title" required/>
+            <div className={styles.post_editor_container}> 
+                {post?._id ?<span>Edit post</span> :<span>Create new post</span>}
+                <div className={styles.title_area_container}>
+                    <textarea rows="1" cols="120"  onChange={(e)=>handleOnChangeTitle(e)} value={title} type="text" placeholder="Enter title" name="title" required/>
+                </div>
 
-                <label htmlFor="psw"><b>content</b></label>
-                <textarea rows="30" cols="90" onChange={(e)=>setPostcontent(e.target.value)} value={postcontent}  type="text" placeholder="Enter content" name="psw" required/>
-
-                 {post?._id ?<button onClick={handleUpdate} >Update</button> :<button type="submit">Post</button>}
-
+                <div className={styles.content_area_container}>
+                    <textarea rows="30" cols="120" onChange={(e)=>handleOnChangePostContent(e)} value={postcontent}  type="text" placeholder="Enter content" name="psw" required/>
+                </div> 
                  
             </div>
+            {post?._id ?<button onClick={handleUpdate} >Update</button> :<button type="submit">Post</button>}
         </form> 
     </div>
 }
