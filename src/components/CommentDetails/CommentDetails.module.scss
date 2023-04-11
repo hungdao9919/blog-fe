@@ -1,13 +1,42 @@
-.container{
-    background-color: cadetblue; 
-    padding: 10px 20px; 
-    margin-top: 8px;
-    & p{ 
-        margin: 0;
-    }
+.container{ 
+    margin-top: 8px; 
+    display: flex; 
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.username_container{
+    max-width: 200px; 
 }
 .profile_image{
-    width: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 1px solid #c5c3c3;
+    border: 1px solid #c5c3c3; 
+    margin-top: 10px;
 } 
+
+.profile_container{
+    display: flex;
+    align-items: center;
+}
+.comment_detail_container{
+    background-color: #e7e7e7; 
+    border-radius: 20px;
+    padding: 20px; 
+    width: 95%;
+    & .comment_content{ 
+        text-align: justify; 
+        margin: 8px 0;
+    }
+    & .date_created{
+        margin: 0;
+        font-size: 1.4rem;
+        font-style: italic;
+
+    }
+    & .comment_footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

@@ -22,10 +22,16 @@ function CommentDetails({index,profileImage,username,commentcontent,createdAt,us
     }    
     return (del || <div key={index} className={styles.container}>
         <img className={styles.profile_image} src={`${profileImage}`} /> 
-        <Username username={username} />   
+        <div className={styles.comment_detail_container}>
+        <div className={styles.username_container}>
+        <Username username={username} />  
+        </div>
         <p className={styles.comment_content}>{commentcontent}</p>
-        <p className={styles.date_created}>{convertedDateObj.hour}:{convertedDateObj.minute}:{convertedDateObj.second} {convertedDateObj.day}/{convertedDateObj.month}/{convertedDateObj.year}</p> 
-    {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemoveComment(_id)}>Xóa</Button>}
+        <div className={styles.comment_footer}>
+        <p className={styles.date_created}>{convertedDateObj.hour}:{convertedDateObj.minute}:{convertedDateObj.second} {convertedDateObj.day}/{convertedDateObj.month}/{convertedDateObj.year}</p>  
+        {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <Button small primary onClick={handleRemoveComment(_id)}>Xóa</Button>}
+        </div>
+        </div> 
 </div>  )
 }
 export default CommentDetails;
