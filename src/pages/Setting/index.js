@@ -3,10 +3,15 @@ import {  useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';  
 import Button from '../../components/Button'    
 import updateUser from '../../services/updateUser';
+import uploadFile from '../../services/uploadFile';
+import {useNavigate} from 'react-router-dom'
+
 function Setting(){
+
     const globalContext = useContext(GlobalContext)  
-    const profileInfo = globalContext.profileInfo  
-    
+    const profileInfo = globalContext.profileInfo   
+    const navigate = useNavigate();
+
     const [isEditInfor, setIsEditInfor] = useState(false)
     const [isEditPass, setIsEditPass] = useState(false) 
     const [editedLastname, setEditedLastname] = useState('')
@@ -14,7 +19,10 @@ function Setting(){
     const [editedEmail, setEditedEmail ]= useState('') 
     const [editedPass, setEditedPass ]= useState('') 
     const [editedOldPass, setOldEditedPass ]= useState('') 
-    const [editedConfirmpass, setEditedConfirmpass ]= useState('') 
+    const [editedConfirmpass, setEditedConfirmpass ]= useState('')  
+    const [profileImage, setProfileImage] = useState()  
+    const [showSubmit, setShowSubmit] = useState(false)  
+
     const handleEditInfor = ()=>{
         setIsEditInfor(true)
         setIsEditPass(false) 
@@ -23,16 +31,19 @@ function Setting(){
         setEditedEmail(profileInfo.email)
 
     }
+
     const handleChangepass = async ()=>{
         setIsEditPass(true)
         setIsEditInfor(false)
          
     }
+
     const handleSubmitInfor =  async(e)=>{
         e.preventDefault(); 
         await updateUser({'email':editedEmail,'lastname':editedLastname,'firstname':editedFirstname})
         window.location.reload()
     }
+
     const handleSubmitPass = async (e)=>{
         e.preventDefault(); 
         if(editedPass === editedConfirmpass){
@@ -42,46 +53,91 @@ function Setting(){
             console.log('Passwords does not match')
         } 
     }
-    const result = !profileInfo ? <h2>Vui lòng đăng nhập</h2> : <div className={styles.container} >
-        {console.log('Profile render')} 
-      <div className={styles.information_container}>
-      <p>{profileInfo._id}</p>  
-        <p>{profileInfo.username}</p>  
-        <p>{profileInfo.lastname}</p>  
-        <p>{profileInfo.firstname}</p>   
-        <p>{profileInfo.email}</p>  
-      </div>
+    
+    const handleChangeImageProfile = async (e)=>{ 
+        e.preventDefault();  
+        const uploadResult = await uploadFile(profileImage)  
+        const updateResult = await updateUser({'profileImage':uploadResult})
+        navigate(0)
 
-       <div className={styles.actions_container}>
-        <Button onClick={handleEditInfor} secondary rounded small>Edit profile Infomation</Button> 
-        <Button onClick={handleChangepass} secondary rounded  small>Change password</Button> 
-       </div>
-       {isEditInfor && <form onSubmit={handleSubmitInfor} action="action_page.php">
+    }  
+    const handleSelectUpload = ()=>{
+        setShowSubmit(true)
+    }  
+    const result = !profileInfo ? <h2>Vui lòng đăng nhập</h2> : <div className={styles.container} >
+            {console.log('Setting render')} 
+            <span>Setting</span>
+            <div className={styles.information_container}>
+                <div className={styles.profile_image_container}>
+                    <img  src={`${profileInfo.profileImage}`}/>  
+                    <form onSubmit={handleChangeImageProfile}>
+                        <label htmlFor="profileImage"><b>Change profile image</b></label> 
+                        <input style={{visibility:'hidden'}} onClick={handleSelectUpload} onChange={(e)=>{setProfileImage(e.target.files[0]) }} type="file" id="profileImage" name="profileImage" accept="image/*" required/>
+                        {showSubmit && <button  type="submit" className="registerbtn">Save image</button>}
+                    </form>
+                </div>
+                <p><span>User ID:</span> {profileInfo._id}</p>  
+                <p><span>Username:</span> {profileInfo.username}</p>  
+                <p><span>Firstname:</span> {profileInfo.firstname}</p>   
+                <p><span>Lastname:</span> {profileInfo.lastname}</p>  
+                <p><span>Email:</span> {profileInfo.email}</p>  
+        <div className={styles.actions_container}>
+            <Button onClick={handleEditInfor}  primary rounded small>Edit profile Infomation</Button> 
+            <Button onClick={handleChangepass} secondary rounded  small>Change password</Button> 
+        </div>
+        </div>
+
+       {isEditInfor && <form onSubmit={handleSubmitInfor}>
             <div className={styles.editor_infor_container}>
                 
-                <label htmlFor="firstname"><b>Firstname</b></label>
-                <input onChange={(e)=>setEditedFirstname(e.target.value)} value={editedFirstname} type="text" name="firstname" id="firstname" required/><br/>
-                <label htmlFor="lastname"><b>Lastname</b></label>
-                <input onChange={(e)=>setEditedLastname(e.target.value)} value={editedLastname} type="text" name="lastname" id="lastname" required/><br/>
-                <label htmlFor="email"><b>Email</b></label>
-                <input onChange={(e)=>setEditedEmail(e.target.value)} value={editedEmail} type="text" name="email" id="email" required/><br/>
-            </div>
-            <button  type="submit" className="registerbtn">Change information</button>
+                <div className={styles.input_wrapper}>
+                    <label htmlFor="firstname"><b>Firstname</b></label>
+                    <div className={styles.input_container}>
+                        <input onChange={(e)=>setEditedFirstname(e.target.value)} value={editedFirstname} type="text" name="firstname" id="firstname" required/>
+                    </div>
+                </div>
+                <div className={styles.input_wrapper}>
+                    <label htmlFor="lastname"><b>Lastname</b></label>
+                    <div className={styles.input_container}>
+                        <input onChange={(e)=>setEditedLastname(e.target.value)} value={editedLastname} type="text" name="lastname" id="lastname" required/>
+                    </div>
+                </div>
+                <div className={styles.input_wrapper}>
+                    <label htmlFor="email"><b>Email</b></label>
+                    <div className={styles.input_container}> 
+                        <input onChange={(e)=>setEditedEmail(e.target.value)} value={editedEmail} type="text" name="email" id="email" required/>
+                    </div>
+                </div>
+                <div className={styles.button_container}>
+                    <button  type="submit" className="registerbtn">Change information</button></div>
+                </div>
        </form>}
 
-       {isEditPass && <form onSubmit={handleSubmitPass} action="action_page.php">
+       {isEditPass && <form onSubmit={handleSubmitPass}>
             <div className={styles.editor_infor_container}> 
+                <div className={styles.input_wrapper}>
                 <label htmlFor="oldpassword"><b>Old Password</b></label>
-                <input onChange={(e)=>setOldEditedPass(e.target.value)} value={editedOldPass} type="password" name="oldpassword" id="oldpassword" required/><br/>
+                <div className={styles.input_container}>
+                    <input onChange={(e)=>setOldEditedPass(e.target.value)} value={editedOldPass} type="password" name="oldpassword" id="oldpassword" required/>
+                </div>
+                </div>
+                <div className={styles.input_wrapper}> 
                 <label htmlFor="newpassword"><b>New Password</b></label>
-                <input onChange={(e)=>setEditedPass(e.target.value)} value={editedPass} type="password" name="newpassword" id="newpassword" required/><br/>
+                <div className={styles.input_container}>
+                    <input onChange={(e)=>setEditedPass(e.target.value)} value={editedPass} type="password" name="newpassword" id="newpassword" required/>
+                </div>
+                </div>
+                <div className={styles.input_wrapper}> 
                 <label htmlFor="confirmnewpassword"><b>Confirm New Password</b></label>
-                <input onChange={(e)=>setEditedConfirmpass(e.target.value)} value={editedConfirmpass} type="password" id="confirmnewpassword" name="confirmnewpassword" required/><br/>
+                <div className={styles.input_container}>
+                    <input onChange={(e)=>setEditedConfirmpass(e.target.value)} value={editedConfirmpass} type="password" id="confirmnewpassword" name="confirmnewpassword" required/>
+                </div>
+                </div>
+                <div  className={styles.button_container}>
+                    <button  type="submit" className="registerbtn">Change password</button>
+                </div>
             </div>
-            <button  type="submit" className="registerbtn">Change password</button>
-       </form>}
-
-        
+       </form>} 
   
 </div>
        
