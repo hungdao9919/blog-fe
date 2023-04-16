@@ -52,7 +52,7 @@ function ProfileActions(){
             profileInfo &&
             <div className={styles.profile_container}>
                 <p className={styles.profile_name}>{`${profileInfo.lastname} ${profileInfo.firstname}`}</p>
-                <Link to={'/profile'} >
+                <Link to={`/profile-details/${globalContext.profileInfo.username}`} >
                 <img src={`${profileInfo.profileImage}`}/>
             </Link>
             </div>
@@ -62,7 +62,7 @@ function ProfileActions(){
             profileInfo && 
             <div className={styles.menu_container}>
             <ul>
-                <li><Link to={'/profile'}>Profile page</Link></li>
+                <li><Link to={`/profile-details/${globalContext.profileInfo.username}`}>Profile page</Link></li>
                 <li onClick={handleSetting}>Setting</li>
                 <li onClick={handleLogout}>Log out</li>
             </ul>

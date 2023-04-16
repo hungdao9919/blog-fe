@@ -10,4 +10,4 @@ const getUserDetail = async (username)=>{
         return error.response.data
       });
 }
-export default getUserDetail;
+export default getUserDetail; 
