@@ -38,38 +38,52 @@ function Register(){
     return <div className={styles.login_wrapper}>
          {console.log('Render Register form')}
         <form onSubmit={handleSubmit} action="action_page.php">
-            <div className="container">
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+            <div className={styles.login_container}>  
                  
                 <label htmlFor="uname"><b>Username</b></label>
-                <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder="Enter Username" id="uname"  name="uname" required/>
+                <div className={styles.input_container}>
+                    <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder="Enter Username" id="uname"  name="uname" required/>
+                </div>
+
 
                 <label htmlFor="firstname"><b>First name</b></label>
-                <input onChange={(e)=>setFirstname(e.target.value)} value={firstname} type="text" placeholder="Enter First name"  id="firstname" name="firstname" required/>
+                <div className={styles.input_container}> 
+                    <input onChange={(e)=>setFirstname(e.target.value)} value={firstname} type="text" placeholder="Enter First name"  id="firstname" name="firstname" required/>
+                </div>
 
                 <label htmlFor="lastname"><b>Last name</b></label>
-                <input onChange={(e)=>setLastname(e.target.value)} value={lastname} type="text" placeholder="Enter lastname" id="lastname" name="lastname" required/>
+                <div className={styles.input_container}>
+
+                    <input onChange={(e)=>setLastname(e.target.value)} value={lastname} type="text" placeholder="Enter lastname" id="lastname" name="lastname" required/>
+                </div>
 
                 <label htmlFor="email"><b>Email</b></label>
-                <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="text" placeholder="Enter Email" name="email" id="email" required/>
+                <div className={styles.input_container}> 
+                    <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="text" placeholder="Enter Email" name="email" id="email" required/>
+                </div>
 
-                <label htmlFor="profileImage"><b>Profile Image</b></label>
-                <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" id="profileImage" name="profileImage" accept="image/*" required/>
+                 
 
+                 
                 <label htmlFor="psw"><b>Password</b></label>
-                <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Enter Password" name="psw" id="psw" required/>
+                <div className={styles.input_container}>
+
+                    <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Enter Password" name="psw" id="psw" required/>
+                </div>
 
                 {/* <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required/> */}
-               
-
+                <div className={styles.upload_container}>
+                    <label className={styles.profile_image} htmlFor="profileImage"><b>Upload profile picture</b></label> 
+                </div>
+                <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" style={{visibility:'hidden'}} id="profileImage" name="profileImage" accept="image/*" required/>
+ 
                  
                 <button  type="submit" className="registerbtn">Register</button>
             </div>
 
-            <div className="container signin">
-                <p>Already have an account? <Link  to='/login'>Login</Link>.</p>
+            <div className={styles.register_container}>
+                <p>Already have an account? <Link  className={styles.register_link}  to='/login'>Login</Link>.</p>
             </div>
         </form>
     </div>
