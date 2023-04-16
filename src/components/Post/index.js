@@ -54,7 +54,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username}){
             <p className={styles.short_desc}>{postcontent}</p>
         <div className={styles.details}>
             <p className={styles.date_created}>{convertedDateObj.hour}:{convertedDateObj.minute}:{convertedDateObj.second} {convertedDateObj.day}/{convertedDateObj.month}/{convertedDateObj.year}</p> 
-            <Username  username={username}/> 
+            <Username userid={userid}  username={username}/> 
         </div>
         
          

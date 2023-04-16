@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import Username from '../Username';
 import getDateTimeFromTimeStamp from '../../services/getDateTimeFromTimeStamp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import {  faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 function PostDetail (){ 
     
     {console.log('render post detail')}
