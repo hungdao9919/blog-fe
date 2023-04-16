@@ -19,7 +19,7 @@ const GlobalProvider = ({children})=>{
             else{
                 setIsAdmin(false)   
             }
-            setProfileInfo(result) 
+            setProfileInfo(result)  
          }
 
          handleGetProfileInfo() 

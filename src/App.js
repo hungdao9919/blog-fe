@@ -1,17 +1,14 @@
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'  
-import ListPosts from './components/ListPosts'
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'   
 import Home from './pages/Home'
 import MyPosts from './pages/MyPosts'
-import { PostsProvider } from './context/PostsContext'
-import Profile from './pages/Profile'
+import { PostsProvider } from './context/PostsContext' 
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PostEditor from './pages/PostEditor'  
 import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
-import Setting from './pages/Setting'
-import AboutUs from '../src/pages/AboutUs'
-// import { PostProvider } from './context/PostContext' 
+import Setting from './pages/Setting'  
 import PostDetail from './components/PostDetail'
+import ProfileDetails from './components/ProfileDetails'
 function App() { 
 
   return (
@@ -36,7 +33,18 @@ function App() {
               </PostsProvider>
             
           </HeaderOnlyLayout>
+          }/>  
+          
+        <Route path='/profile-details/:username' element={
+          <HeaderOnlyLayout>
+            
+              <PostsProvider> 
+                <ProfileDetails />
+              </PostsProvider>
+            
+          </HeaderOnlyLayout>
           }/> 
+
           <Route path='/myposts' element={
           <HeaderOnlyLayout>
              
@@ -46,16 +54,17 @@ function App() {
             
           </HeaderOnlyLayout>
           }/> 
-          <Route path='/profile' element={
+          {/* <Route path='/profile' element={
           <HeaderOnlyLayout>
-              <Profile/>
-          </HeaderOnlyLayout>}/>
+              <PostsProvider> 
+                <Profile/>
+              </PostsProvider>
+          </HeaderOnlyLayout>}/> */}
           <Route path='/setting' element={
           <HeaderOnlyLayout>
               <Setting/>
           </HeaderOnlyLayout>}/>
-          <Route path='/login' element={<HeaderOnlyLayout><Login/></HeaderOnlyLayout>}/>
-          <Route path='/about-us' element={<HeaderOnlyLayout><AboutUs/></HeaderOnlyLayout>}/>
+          <Route path='/login' element={<HeaderOnlyLayout><Login/></HeaderOnlyLayout>}/> 
           <Route path='/register' element={<HeaderOnlyLayout><Register/></HeaderOnlyLayout>}/>
           <Route path='/editor' element={ 
           <HeaderOnlyLayout>

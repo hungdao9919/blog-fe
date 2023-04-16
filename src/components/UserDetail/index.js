@@ -18,6 +18,7 @@ function UserDetail ({username}){
     const setUserCallback = (data)=>{
         setUserDetail(data)
     } 
+    console.log(userDetail)
     
     const newDateTime = getDateTimeFromTimeStamp(userDetail.createdAt)  
     return <div className={styles.user_detail}>
