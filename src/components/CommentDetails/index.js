@@ -11,9 +11,7 @@ function CommentDetails({index,profileImage,username,commentcontent,createdAt,us
     const [del, setDel] = useState(false)
     const convertedDateObj = getDateTimeFromTimeStamp(createdAt)  
     const handleRemoveComment =  (_id) => async ()=>{
-        if(window.confirm(`Bạn có muốn xóa comment ${commentcontent}`)){
-    
-           
+        if(window.confirm(`Bạn có muốn xóa comment ${commentcontent}`)){ 
             const deleteCommentResult =  await deleteComment(_id)
             if(deleteCommentResult.status === 204){ 
                 setDel(true)
