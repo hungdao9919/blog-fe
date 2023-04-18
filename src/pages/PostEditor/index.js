@@ -5,15 +5,17 @@ import { useNavigate} from 'react-router-dom'
 import { GlobalContext } from '../../context/GlobalContext';
 import { useContext } from 'react'  
 import updatePost from '../../services/updatePost'
+import uploadFile from '../../services/uploadFile';
 function PostEditor(){
     const navigate = useNavigate();
+    const globalContext = useContext(GlobalContext)   
+    const setIsLoading = globalContext.setIsLoading
 
-    const globalContext = useContext(GlobalContext)  
-    console.log(globalContext)
-    const {post,setPost} = useContext(GlobalContext) 
+    const {post,setPost} = useContext(GlobalContext)  
     const isLogged = globalContext.isLogged 
     const [title, setTitle] = useState('')
     const [postcontent, setPostcontent] = useState('') 
+    const [postImage, setPostImage] = useState()    
     useEffect(()=>{
         console.log('post thay doi')
         if(post?._id){
@@ -30,14 +32,38 @@ function PostEditor(){
         navigate('/')
     }
     const handleSubmit = async(e)=>{
+        setIsLoading(true)
         e.preventDefault();
-        const  createPostResult = await createPost(title,postcontent)  
+        const imageResult = await uploadFile(postImage)
+        const  createPostResult = await createPost(title,postcontent,imageResult)  
+        setIsLoading(true)
         setPost({'_id':createPostResult._id,'title':createPostResult.title,'postcontent':createPostResult.postcontent,'createdAt':createPostResult.createdAt,'updatedAt':createPostResult.updatedAt,'username':globalContext.profileInfo.username}) 
         navigate(`/post-details/${createPostResult._id}`)
     }
     const handleUpdate = async(e)=>{
         e.preventDefault();
-        const updateResult = await updatePost(post._id,title,postcontent) 
+         
+        if(postImage){
+            const imageResult = await uploadFile(postImage) 
+            const data = {
+                "postID":post._id,
+                "title": title,
+                "postcontent": postcontent,
+                "postimage":imageResult
+            }
+            const updateResult = await updatePost(data) 
+        }
+        else{
+            const data = {
+                "postID":post._id,
+                "title": title,
+                "postcontent": postcontent, 
+            }
+            const updateResult = await updatePost(data)  
+            
+        }
+        
+        navigate(`/post-details/${post._id}`)
     }
     const handleOnChangeTitle = (e)=>{
         setTitle(e.target.value)
@@ -60,6 +86,10 @@ function PostEditor(){
 
                 <div className={styles.content_area_container}>
                     <textarea rows="30" cols="120" onChange={(e)=>handleOnChangePostContent(e)} value={postcontent}  type="text" placeholder="Enter content" name="psw" required/>
+                </div> 
+                <div className={styles.file_container}>
+                    <label>Choose post image</label>
+                    <input onChange={(e)=>{ setPostImage(e.target.files[0])}} accept="image/*"  type='file' />
                 </div> 
                  
             </div>

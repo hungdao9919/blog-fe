@@ -18,6 +18,8 @@ function PostDetail (){
     const navigate = useNavigate(Navigate)
     const {post,setPost} = useContext(GlobalContext) 
     const globalContext = useContext(GlobalContext) 
+    const setIsLoading = globalContext.setIsLoading
+
     const postId =location.pathname.split('/')[2];  
     const convertedCreatedDateObj = getDateTimeFromTimeStamp(post.createdAt)
     const convertedUpdatedDateObj = getDateTimeFromTimeStamp(post.updatedAt)
@@ -25,9 +27,13 @@ function PostDetail (){
     let data
     useEffect(  () => {  
         async function getPosts (){
-            data = await getPublicPosts('','',postId)   
-            setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username,'userid':data.postsResult[0].userid}) 
-            
+            setIsLoading(true)
+
+            data = await getPublicPosts('','',postId)    
+            setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username,'userid':data.postsResult[0].userid,'postImage':data.postsResult[0].postimage}) 
+            setTimeout(()=>{
+                setIsLoading(false)
+            },200)
              
         }
         getPosts()
@@ -43,14 +49,16 @@ function PostDetail (){
 
     const handleEditPost =(e)=>{ 
         e.preventDefault(); 
-        e.stopPropagation()
-        setPost({'_id':post._id,'userid':post.userid,'title':post.title,'postcontent':post.postcontent,'createdAt':post.createdAt,'updatedAt':post.updatedAt,'username':post.username}) 
+        e.stopPropagation() 
+        setPost({'_id':post._id,'userid':post.userid,'title':post.title,'postcontent':post.postcontent,'createdAt':post.createdAt,'updatedAt':post.updatedAt,'username':post.username,'postImage':post.postImage}) 
         navigate('/editor')     
         
-    } 
+    }  
     return <div className={styles.post_container}> 
         
-        
+        <div className={styles.post_image_container}>
+            <img src={post.postImage} />
+        </div>
         <p className={styles.post_title}>{post.title}</p>
 
         <p className={styles.post_postcontent}>{post.postcontent}</p>   

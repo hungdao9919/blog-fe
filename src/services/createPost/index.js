@@ -2,12 +2,13 @@ import axios from "axios";
 import {hostAPI} from '../configs'
 import getAccessToken from "../getAccessToken";
 
-const createPost = async (title, postcontent)=>{ 
+const createPost = async (title, postcontent,postimage)=>{ 
   const accessToken = await getAccessToken()  
 
     return  await axios.post(`${hostAPI}/post`, {
         "title": title,
-        "postcontent": postcontent
+        "postcontent": postcontent,
+        "postimage":postimage
       },
       {
         headers: {

@@ -8,7 +8,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 
   function ListPosts (){  
     const location = useLocation();
-    const globalContext = useContext(GlobalContext)
+    const globalContext = useContext(GlobalContext) 
     const {posts,setPosts} = useContext(PostsContext) 
     const pageNo =[]
     if(posts.totalPage > 1){
@@ -16,8 +16,7 @@ import { GlobalContext } from '../../context/GlobalContext';
         for(let i = 1 ; i <= posts.totalPage ; i++){
             pageNo.push(i)
         }  
-    }
-     
+    } 
     const handleSelectPageNo =  async(pageNoitem)=>{
         if(pageNoitem != posts.pageNo){
             if(location.pathname.split('/')[1] ==='myposts'){
@@ -34,12 +33,12 @@ import { GlobalContext } from '../../context/GlobalContext';
         } 
          
          
-    }
+    } 
     return <div className={styles.wrapper}>
     <div className={styles.container}> 
             {console.log('Render ListPosts')}
              
-            {posts?.postsResult?.length > 0 && posts.postsResult.map((post,index)=><Post  key={index} _id={post._id} userid={post.userid}  title={post.title} updatedAt={post.updatedAt} postcontent={post.postcontent} createdAt={post.createdAt} username={post.username}  />)}
+            {posts?.postsResult?.length > 0 && posts.postsResult.map((post,index)=><Post  key={index} _id={post._id} profileImage={post.postimage} userid={post.userid}  title={post.title} updatedAt={post.updatedAt} postcontent={post.postcontent} createdAt={post.createdAt} username={post.username}  />)}
         
     </div>   
     <div className={styles.page_number}>

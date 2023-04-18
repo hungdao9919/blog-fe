@@ -28,6 +28,21 @@
         }
     }
 }
+.file_container{ 
+    border-radius: 20px;
+    background-color: rgb(240, 239, 239);
+    min-height: 40px;
+    margin-top: 12px;
+    text-align: center;
+    padding: 16px 20px;
+    & label{
+        color: #5f5f5f; 
+        display: inline-block;
+        margin-right: 16px;
+        font-size: 1.4rem;
+    }
+
+}
 .content_area_container,
 .title_area_container{ 
     width: 100%;  

@@ -2,14 +2,10 @@ import axios from "axios";
 import {hostAPI} from '../configs'
 import getAccessToken from "../getAccessToken";
 
-const updatePost = async (postID,title,postcontent)=>{ 
+const updatePost = async (data)=>{ 
   const accessToken = await getAccessToken()  
 
-    return  await axios.put(`${hostAPI}/post`, {
-        "postID":postID,
-        "title": title,
-        "postcontent": postcontent
-      },
+    return  await axios.put(`${hostAPI}/post`, data,
       {
         headers: {
             'Accept': 'application/json',
