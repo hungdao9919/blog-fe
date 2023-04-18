@@ -12,6 +12,7 @@ import getPublicComments from '../../services/getPublicComments'
 import Button from '../Button';
 function ProfileDetails (){  
     const globalContext = useContext(GlobalContext) 
+    const setIsLoading = globalContext.setIsLoading
     const profileInfo = globalContext.profileInfo  
     const location = useLocation(); 
      
@@ -43,6 +44,8 @@ function ProfileDetails (){
          
     }
     useEffect(  () => {  
+        setIsLoading(true)
+
         if(location.pathname.includes('/profile-details/') || location.pathname.split('/')[1] ==='profile'){ 
             const userId =location.pathname.split('/')[2];  
             
@@ -77,6 +80,9 @@ function ProfileDetails (){
             setInfor(profileInfo)
 
         }
+        setTimeout(()=>{
+            setIsLoading(false)
+        },600)
     },[select])    
     const handleViewMoreComment = async ()=>{ 
         const currentPage = parseInt(comment.pageNo) + 1 

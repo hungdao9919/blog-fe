@@ -5,6 +5,7 @@ const GlobalContext = createContext()
 const GlobalProvider = ({children})=>{
      
     const [isAdmin, setIsAdmin] = useState(false) 
+    const [isLoading, setIsLoading] = useState(false) 
     const [isLogged, setIsLogged] = useState(false) 
     const [profileInfo, setProfileInfo] = useState()  
     const [post,setPost] =useState({})    
@@ -43,7 +44,7 @@ const GlobalProvider = ({children})=>{
 
      
      
-    return <GlobalContext.Provider value={{isAdmin, setIsAdmin,isLogged, setIsLogged,profileInfo, setProfileInfo,post,setPost}}>
+    return <GlobalContext.Provider value={{isAdmin, setIsAdmin,isLogged, setIsLogged,profileInfo, setProfileInfo,post,setPost,isLoading, setIsLoading}}>
         {children}
     </GlobalContext.Provider>
 }
