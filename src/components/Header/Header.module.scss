@@ -17,12 +17,8 @@
 .logo_container{ 
    width: 220px;
 }
-.navigation_container{ 
-    width: 420px;
-
-
-}
-.actions_container{ 
-    width: 220px;
-
+ 
+.searchbar_container{
+    display: flex; 
+    align-items: center;
 }

@@ -9,6 +9,7 @@ import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
 import Setting from './pages/Setting'  
 import PostDetail from './components/PostDetail'
 import ProfileDetails from './components/ProfileDetails'
+
 function App() { 
 
   return (

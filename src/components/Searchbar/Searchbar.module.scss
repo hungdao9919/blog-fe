@@ -1,0 +1,13 @@
+ .search_wrapper{
+    background-color: rgb(228, 227, 227);
+    padding: 4px 10px;
+    & input{
+        border: none;
+        background-color: unset;
+        outline: none;
+    }
+    & button{
+        border: none;
+        background-color: unset;
+    }
+ }
