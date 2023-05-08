@@ -27,41 +27,57 @@ function ProfileDetails (){
         }  
     } 
     const handleSelectPageNo =  async(pageNoitem)=>{ 
+        
         if(pageNoitem != posts.pageNo){
-            if(location.pathname.split('/')[1] ==='profile-details' || location.pathname.split('/')[1] ==='profile'){
-                
-                let data = await getPublicPosts(pageNoitem,infor._id)  
+                setIsLoading(true)
+
+                const fetchData={
+                    'pageNo':pageNoitem,
+                    'userId': infor._id
+                }
+                console.log(fetchData)
+                let data = await getPublicPosts(fetchData)   
                 const postsResult = data.postsResult 
                 setPosts(data)  
-            }
-            else{
-                let data = await getPublicPosts(pageNoitem)  
-                const postsResult = data.postsResult 
-                setPosts(data)         
-            }
+                setTimeout(()=>{
+                    setIsLoading(false)
+                },600)
+             
             
         }    
          
     }
     useEffect(  () => {  
-        setIsLoading(true)
+       
 
+        setIsLoading(true)
         if(location.pathname.includes('/profile-details/') || location.pathname.split('/')[1] ==='profile'){ 
             const userId =location.pathname.split('/')[2];  
-            
             
             switch(select){
                 case 'info' :
                     async function getInfo(){
                         const userDetailResult =  await getUserDetail(userId)  
                         setInfor(userDetailResult)   
+                        setIsLoading(false)
+
                     }
                     getInfo()
                     break; 
                 case 'posts':
-                    async function getPosts (){   
-                        const getPostsResult = await getPublicPosts(1,infor._id)    
-                        setPosts(getPostsResult)        
+                    async function getPosts (){ 
+                        setPosts({})     
+                        const fetchData = {
+                            'pageNo': 1,
+                            'userId':infor._id
+                        }
+                        setIsLoading(true)
+
+                        const getPostsResult = await getPublicPosts(fetchData)    
+
+                        setPosts(getPostsResult)   
+                        setIsLoading(false)
+
                       }
                     getPosts() 
                     break; 
@@ -69,6 +85,8 @@ function ProfileDetails (){
                     async function getComment (){    
                         const publicComments = await getPublicComments({'userId':infor._id,'pageNo':1}) 
                         setComment(publicComments.data)          
+                        setIsLoading(false)
+
                       }
                       getComment() 
                     break; 
@@ -80,9 +98,7 @@ function ProfileDetails (){
             setInfor(profileInfo)
 
         }
-        setTimeout(()=>{
-            setIsLoading(false)
-        },600)
+        
     },[select])    
     const handleViewMoreComment = async ()=>{ 
         const currentPage = parseInt(comment.pageNo) + 1 

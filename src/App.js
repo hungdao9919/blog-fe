@@ -9,11 +9,16 @@ import HeaderOnlyLayout from './components/Layouts/HeaderOnlyLayout'
 import Setting from './pages/Setting'  
 import PostDetail from './components/PostDetail'
 import ProfileDetails from './components/ProfileDetails'
-
+import Loadding from '../src/components/Loadding'
+import { GlobalContext } from './context/GlobalContext'
+import { useContext } from 'react'
 function App() { 
+  const {isLoading, setIsLoading} = useContext(GlobalContext)
 
   return (
+    
     <Router>
+       {isLoading && <Loadding/>}
       <div className="App">
 
         <Routes>

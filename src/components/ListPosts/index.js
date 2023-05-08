@@ -9,6 +9,8 @@ import { GlobalContext } from '../../context/GlobalContext';
   function ListPosts (){  
     const location = useLocation();
     const globalContext = useContext(GlobalContext) 
+    console.log(globalContext)
+    const {isLoading,setIsLoading} = useContext(GlobalContext) 
     const {posts,setPosts} = useContext(PostsContext) 
     const pageNo =[]
     if(posts.totalPage > 1){
@@ -17,20 +19,33 @@ import { GlobalContext } from '../../context/GlobalContext';
             pageNo.push(i)
         }  
     } 
+    console.log(posts)
     const handleSelectPageNo =  async(pageNoitem)=>{
         if(pageNoitem != posts.pageNo){
+            setIsLoading(true)
             if(location.pathname.split('/')[1] ==='myposts'){
-                let data = await getPublicPosts(pageNoitem,globalContext.profileInfo._id)  
+                let dataFetch = {
+                    'pageNo':pageNoitem,
+                    'userId':globalContext.profileInfo._id
+                }
+                let data = await getPublicPosts(dataFetch)  
                 const postsResult = data.postsResult 
                 setPosts(data)  
+                setIsLoading(false)
+
             }
             else{
-                let data = await getPublicPosts(pageNoitem)  
-                const postsResult = data.postsResult 
+                let dataFetch = {
+                    'pageNo':pageNoitem,
+                     
+                }
+                let data = await getPublicPosts(dataFetch)  
+                setIsLoading(false)
+
                 setPosts(data)         
             }
             
-        } 
+        }  
          
          
     } 
