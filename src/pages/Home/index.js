@@ -23,6 +23,7 @@ function Home(){
         }
         getPosts()
     },[]) 
+    console.log(posts)
     return <div className={styles.container}>  
            <ListPosts/>  
     </div>

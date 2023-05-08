@@ -33,7 +33,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,profile
     } 
     const  handleSelectPost = () =>{ 
          
-        setPost({'_id':_id,'title':title,'postcontent':postcontent,'createdAt':createdAt,'updatedAt':updatedAt,'username':username}) 
+        // setPost({'_id':_id,'title':title,'postcontent':postcontent,'createdAt':createdAt,'updatedAt':updatedAt,'username':username}) 
         navigate(`/post-details/${_id}`)   
     
     } 
