@@ -1,8 +1,26 @@
 import axios from "axios";
 import {hostAPI} from '../configs'  
-const getPublicPosts = async (pageNo,userId='',postId='')=>{  
-    return  await axios.get(`${hostAPI}/public-posts?pageNo=${pageNo}&userId=${userId}&postId=${postId}`,)
-      .then( (response)=> {  
+ 
+  const getPublicPosts = async (data)=>{  
+    console.log(data)
+    let urlApi;
+    if(data?.postId){
+      console.log('chi co post id')
+      urlApi = `${hostAPI}/public-posts?postId=${data.postId}`
+    }
+    else if(data?.userId){
+      console.log('co user id')
+      const pageNo = data?.pageNo ? data.pageNo : 1  
+      urlApi = `${hostAPI}/public-posts?pageNo=${pageNo}&userId=${data.userId}`
+    }
+    else{
+      console.log('get all post') 
+      urlApi = `${hostAPI}/public-posts?pageNo=${data.pageNo}`
+    }
+    return  await axios.get(urlApi)
+      .then( (response)=> { 
+        console.log(urlApi) 
+        console.log(response) 
         return response.data
 
       })

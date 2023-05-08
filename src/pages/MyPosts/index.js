@@ -15,9 +15,12 @@ import getPublicPosts from '../../services/getPublicPosts';
             async function getPosts (){
                 console.log('get post boi id user')
                 setIsLoading(true)
-                data = await getPublicPosts(1,globalContext.profileInfo._id)  
-                
-                const postsResult = data.postsResult
+                const fetchData={
+                    'pageNo':1,
+                    'userId': globalContext.profileInfo._id
+                }
+                data = await getPublicPosts(fetchData)   
+                 
                 setPosts(data)  
                 setIsLoading(false)      
                  

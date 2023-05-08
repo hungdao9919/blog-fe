@@ -11,9 +11,10 @@ function Home(){
     useEffect(  () => {
         async function getPosts (){
             setIsLoading(true)
-
-            data = await getPublicPosts(1)   
-            const postsResult = data.postsResult 
+            const fetchData ={
+                'pageNo':1
+            }
+            data = await getPublicPosts(fetchData)    
             setPosts(data)      
             
             setIsLoading(false)
