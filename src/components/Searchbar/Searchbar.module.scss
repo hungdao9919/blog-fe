@@ -26,7 +26,7 @@
     }
  }
  .search_result{
-    max-width: 300px;
+    max-width: 220px;
     position: absolute;
     z-index: 1;
     background-color: rgb(228, 227, 227);
@@ -48,4 +48,8 @@
         cursor: pointer;
         background-color: rgb(185, 185, 185);
     }
+ }
+ .not_have_results{
+    width: 220px;
+    padding: 8px 6px;
  }
