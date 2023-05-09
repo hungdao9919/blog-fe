@@ -8,7 +8,12 @@
         color: black;
         cursor: pointer;
     }
-     
+    &:hover .userdetail_container {
+        display: block;
+    }
    
 }
  
+.userdetail_container{
+    display: none;
+}

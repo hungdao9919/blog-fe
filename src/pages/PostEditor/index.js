@@ -15,15 +15,14 @@ function PostEditor(){
     const isLogged = globalContext.isLogged 
     const [title, setTitle] = useState('')
     const [postcontent, setPostcontent] = useState('') 
-    const [postImage, setPostImage] = useState()     
-  
+    const [postImage, setPostImage] = useState()   
+    
     
     useEffect(()=>{
         console.log('post thay doi')
         if(post?._id){
             setTitle(post.title)
-            setPostcontent(post.postcontent)
-            console.log(post)
+            setPostcontent(post.postcontent) 
         }
         else{
             setTitle('')

@@ -1,8 +1,7 @@
 import axios from "axios";
 import {hostAPI} from '../configs'  
  
-  const getPublicPosts = async (data)=>{  
-    console.log(data)
+  const getPublicPosts = async (data)=>{   
     let urlApi;
     if(data?.postId){
       console.log('chi co post id')
@@ -18,9 +17,7 @@ import {hostAPI} from '../configs'
       urlApi = `${hostAPI}/public-posts?pageNo=${data.pageNo}`
     }
     return  await axios.get(urlApi)
-      .then( (response)=> { 
-        console.log(urlApi) 
-        console.log(response) 
+      .then( (response)=> {  
         return response.data
 
       })

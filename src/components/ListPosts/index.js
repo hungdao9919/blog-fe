@@ -18,8 +18,7 @@ import { GlobalContext } from '../../context/GlobalContext';
         for(let i = 1 ; i <= posts.totalPage ; i++){
             pageNo.push(i)
         }  
-    } 
-    console.log(posts)
+    }  
     const handleSelectPageNo =  async(pageNoitem)=>{
         if(pageNoitem != posts.pageNo){
             setIsLoading(true)
