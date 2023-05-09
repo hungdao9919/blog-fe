@@ -11,6 +11,7 @@ function Setting(){
     const globalContext = useContext(GlobalContext)  
     const profileInfo = globalContext.profileInfo   
     const navigate = useNavigate();
+    const setIsLoading = globalContext.setIsLoading
 
     const [isEditInfor, setIsEditInfor] = useState(false)
     const [isEditPass, setIsEditPass] = useState(false) 
@@ -21,8 +22,7 @@ function Setting(){
     const [editedOldPass, setOldEditedPass ]= useState('') 
     const [editedConfirmpass, setEditedConfirmpass ]= useState('')  
     const [profileImage, setProfileImage] = useState()  
-    const [showSubmit, setShowSubmit] = useState(false)  
-
+    const [showSubmit, setShowSubmit] = useState(false)   
     const handleEditInfor = ()=>{
         setIsEditInfor(true)
         setIsEditPass(false) 
@@ -55,6 +55,7 @@ function Setting(){
     }
     
     const handleChangeImageProfile = async (e)=>{ 
+        setIsLoading(true)
         e.preventDefault();  
         const uploadResult = await uploadFile(profileImage)  
         const updateResult = await updateUser({'profileImage':uploadResult})
@@ -69,7 +70,7 @@ function Setting(){
             <span>Setting</span>
             <div className={styles.information_container}>
                 <div className={styles.profile_image_container}>
-                    <img  src={`${profileInfo.profileImage}`}/>  
+                    <img  src={`${profileImage?URL.createObjectURL(profileImage) : profileInfo.profileImage}`}/>  
                     <form onSubmit={handleChangeImageProfile}>
                         <label htmlFor="profileImage"><b>Change profile image</b></label> 
                         <input style={{visibility:'hidden'}} onClick={handleSelectUpload} onChange={(e)=>{setProfileImage(e.target.files[0]) }} type="file" id="profileImage" name="profileImage" accept="image/*" required/>

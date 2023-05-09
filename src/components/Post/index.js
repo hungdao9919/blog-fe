@@ -6,7 +6,7 @@ import deletePost from '../../services/deletePost'
 import { Navigate, useNavigate } from 'react-router-dom';  
 import Username from '../Username';
 import getDateTimeFromTimeStamp from '../../services/getDateTimeFromTimeStamp';
-function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,profileImage}){ 
+function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,postImage}){ 
     const {post,setPost} = useContext(GlobalContext)
     const [del, setDel] = useState(false)
     const navigate = useNavigate(Navigate)
@@ -27,7 +27,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,profile
     const handleEditPost =(e)=>{ 
         e.preventDefault(); 
         e.stopPropagation()
-        setPost({'_id':_id,'userid':userid,'title':title,'postcontent':postcontent,'createdAt':createdAt,'updatedAt':updatedAt,'username':username,'profileImage':profileImage}) 
+        setPost({'_id':_id,'userid':userid,'title':title,'postcontent':postcontent,'createdAt':createdAt,'updatedAt':updatedAt,'username':username,'postImage':postImage}) 
         navigate('/editor')     
         
     } 
@@ -41,7 +41,7 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,profile
     return ( del || <div className={styles.container}>
         {console.log('Render Post')}
         <div className={styles.post_image}>
-        <img  src={profileImage} />
+        <img  src={postImage} />
         <div className={styles.post_actions_container}>
             <Button primary rounded onClick={handleSelectPost} >View Post</Button>  
             {(globalContext.isAdmin ||  globalContext?.profileInfo?._id === userid) && <div className={styles.remove_edit_container}>

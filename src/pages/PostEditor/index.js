@@ -10,17 +10,20 @@ function PostEditor(){
     const navigate = useNavigate();
     const globalContext = useContext(GlobalContext)   
     const setIsLoading = globalContext.setIsLoading
-
+    
     const {post,setPost} = useContext(GlobalContext)  
     const isLogged = globalContext.isLogged 
     const [title, setTitle] = useState('')
     const [postcontent, setPostcontent] = useState('') 
-    const [postImage, setPostImage] = useState()    
+    const [postImage, setPostImage] = useState()     
+  
+    
     useEffect(()=>{
         console.log('post thay doi')
         if(post?._id){
             setTitle(post.title)
             setPostcontent(post.postcontent)
+            console.log(post)
         }
         else{
             setTitle('')
@@ -29,7 +32,7 @@ function PostEditor(){
            
     },[post])
     if(!isLogged){
-        navigate('/')
+        navigate('/')   
     }
     const handleSubmit = async(e)=>{
         setIsLoading(true)
@@ -90,6 +93,10 @@ function PostEditor(){
                 <div className={styles.file_container}>
                     <label>Choose post image</label>
                     <input onChange={(e)=>{ setPostImage(e.target.files[0])}} accept="image/*"  type='file' />
+                </div> 
+                <div className={styles.image_preview_container}>
+                    {!postImage && post?._id && <img width='400px' height='400px' style={{objectFit:'cover'}} src={post.postImage}/>}
+                    {postImage&& <img width='400px' height='400px' style={{objectFit:'cover'}} src={URL.createObjectURL(postImage)}/>}
                 </div> 
                  
             </div>

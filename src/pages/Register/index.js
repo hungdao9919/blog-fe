@@ -77,8 +77,8 @@ function Register(){
                     <label className={styles.profile_image} htmlFor="profileImage"><b>Upload profile picture</b></label> 
                 </div>
                 <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" style={{visibility:'hidden'}} id="profileImage" name="profileImage" accept="image/*" required/>
- 
-                 
+                {profileImage && <img width='300px' height='300px' src={URL.createObjectURL(profileImage)}/>}
+                
                 <button  type="submit" className="registerbtn">Register</button>
             </div>
 
