@@ -53,7 +53,7 @@ import { GlobalContext } from '../../context/GlobalContext';
     <div className={styles.container}> 
             {console.log('Render ListPosts')}
              
-            {posts?.postsResult?.length > 0 && posts.postsResult.map((post,index)=><Post  key={index} _id={post._id} profileImage={post.postimage} userid={post.userid}  title={post.title} updatedAt={post.updatedAt} postcontent={post.postcontent} createdAt={post.createdAt} username={post.username}  />)}
+            {posts?.postsResult?.length > 0 && posts.postsResult.map((post,index)=><Post  key={index} _id={post._id} postImage={post.postimage} userid={post.userid}  title={post.title} updatedAt={post.updatedAt} postcontent={post.postcontent} createdAt={post.createdAt} username={post.username}  />)}
         
     </div>   
     <div className={styles.page_number}>

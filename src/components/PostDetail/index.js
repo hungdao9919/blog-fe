@@ -37,7 +37,7 @@ function PostDetail (){
              
         }
         getPosts()
-    },[])
+    },[postId])
      
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
