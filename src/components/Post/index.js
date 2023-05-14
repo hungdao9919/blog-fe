@@ -15,12 +15,12 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,postIma
 
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
-        if(window.confirm(`Bạn có muốn xóa post ${title}`)){
+        if(window.confirm(`Do you want to delete this post? ${title}`)){
     
             const deleteResult = await deletePost(_id)
             
             if(deleteResult.status ===204){
-             setDel(true) 
+                navigate(0) 
             } 
         } 
     }    

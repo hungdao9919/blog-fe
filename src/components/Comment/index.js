@@ -18,6 +18,7 @@ function Comment(){
         let sortedComments = commentList?.commentResult?.length > 0 ? commentList.commentResult.unshift(newComment) : commentList.commentResult =[newComment]
         setPost(prev=>({'comments':(sortedComments),...prev})) 
         setComment('')  
+        ref.current.style.height = '28px'
     } 
     const handleViewMoreComment = async ()=>{ 
         const currentPage = parseInt(commentList.pageNo) + 1 
@@ -29,7 +30,8 @@ function Comment(){
     useEffect(()=>{
         async function getComments (){  
             if(post._id){
-                const commentsResult  = await getPublicComment({'postId':post._id,'pageNo':1})    
+                const commentsResult  = await getPublicComment({'postId':post._id,'pageNo':1})   
+                console.log('comment result',commentsResult) 
                 if(commentsResult.status == 200 || commentsResult.status == 204){   
                     setCommmentList(commentsResult.data?commentsResult.data:[])  
                 }
@@ -58,7 +60,7 @@ return (<div className={styles.wrapper}>
                 <textarea ref={ref} rows='1' cols="50" onChange={(e)=>handleOnchangComment(e)} value={comment}  type="text" placeholder="Leave your comment for this post" id='comment' name="comment" required/>
                 <div className={styles.comments_actions_container}>
                     <button type="submit">Post</button>       
-                    {/* scale thêm chức năng upload hình ảnh,... */}
+                    {/*  thêm chức năng upload hình ảnh,... */}
                 </div>
             </div>
                         

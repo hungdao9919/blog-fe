@@ -11,7 +11,7 @@ import PostDetail from './components/PostDetail'
 import ProfileDetails from './components/ProfileDetails'
 import Loadding from '../src/components/Loadding'
 import { GlobalContext } from './context/GlobalContext'
-import { useContext } from 'react'
+import { useContext } from 'react'  
 function App() { 
   const {isLoading, setIsLoading} = useContext(GlobalContext)
 
@@ -60,12 +60,7 @@ function App() {
             
           </HeaderOnlyLayout>
           }/> 
-          {/* <Route path='/profile' element={
-          <HeaderOnlyLayout>
-              <PostsProvider> 
-                <Profile/>
-              </PostsProvider>
-          </HeaderOnlyLayout>}/> */}
+           
           <Route path='/setting' element={
           <HeaderOnlyLayout>
               <Setting/>
