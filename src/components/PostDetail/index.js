@@ -31,6 +31,7 @@ function PostDetail (){
             const fetchData ={postId}
             data = await getPublicPosts(fetchData)     
             setPost({'_id':data.postsResult[0]._id,'title':data.postsResult[0].title,'postcontent':data.postsResult[0].postcontent,'createdAt':data.postsResult[0].createdAt,'updatedAt':data.postsResult[0].updatedAt,'username':data.postsResult[0].username,'userid':data.postsResult[0].userid,'postImage':data.postsResult[0].postimage}) 
+            document.title=`${data.postsResult[0].title}`
             setTimeout(()=>{
                 setIsLoading(false)
             },200)

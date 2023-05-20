@@ -53,7 +53,7 @@ function ProfileDetails (){
         setIsLoading(true)
         if(location.pathname.includes('/profile-details/') || location.pathname.split('/')[1] ==='profile'){ 
             const userId =location.pathname.split('/')[2];  
-            
+            document.title=`${userId}`
             switch(select){
                 case 'info' :
                     async function getInfo(){

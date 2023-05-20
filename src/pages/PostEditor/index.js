@@ -23,10 +23,12 @@ function PostEditor(){
         if(post?._id){
             setTitle(post.title)
             setPostcontent(post.postcontent) 
+            document.title=`Edit ${post.title}`
         }
         else{
             setTitle('')
             setPostcontent('')
+            document.title='Create new post '
         }
            
     },[post])

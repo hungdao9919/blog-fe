@@ -8,6 +8,7 @@ function Home(){
     const {isLoading, setIsLoading} = useContext(GlobalContext)
     const {posts,setPosts} = useContext(PostsContext)
     let data 
+    document.title="Lamsitemmo Blog"
     useEffect(  () => {
         async function getPosts (){
             setIsLoading(true)

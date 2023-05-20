@@ -8,7 +8,7 @@ import getPublicPosts from '../../services/getPublicPosts';
     const {posts,setPosts} = useContext(PostsContext)
     const globalContext = useContext(GlobalContext)      
     const setIsLoading = globalContext.setIsLoading
-
+    document.title="My post"
     let data
     useEffect(  () => {
         if(globalContext.profileInfo){
@@ -27,10 +27,10 @@ import getPublicPosts from '../../services/getPublicPosts';
             }
             getPosts()
         }
-    },[globalContext.profileInfo])
-       
+    },[globalContext.profileInfo]) 
     return <div className={styles.wrapper}> 
-           <ListPosts/> 
+
+           {posts?<ListPosts/> :<div className={styles.no_post}>You have not written any posts yet</div>}
     </div>
      
     
