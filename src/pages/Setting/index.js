@@ -7,7 +7,7 @@ import uploadFile from '../../services/uploadFile';
 import {useNavigate} from 'react-router-dom'
 
 function Setting(){
-
+    document.title="Setting"
     const globalContext = useContext(GlobalContext)  
     const profileInfo = globalContext.profileInfo   
     const navigate = useNavigate();
@@ -20,9 +20,12 @@ function Setting(){
     const [editedEmail, setEditedEmail ]= useState('') 
     const [editedPass, setEditedPass ]= useState('') 
     const [editedOldPass, setOldEditedPass ]= useState('') 
+    const [error, setError ]= useState('') 
+
     const [editedConfirmpass, setEditedConfirmpass ]= useState('')  
     const [profileImage, setProfileImage] = useState()  
-    const [showSubmit, setShowSubmit] = useState(false)   
+    const [showSubmit, setShowSubmit] = useState(false)  
+
     const handleEditInfor = ()=>{
         setIsEditInfor(true)
         setIsEditPass(false) 
@@ -47,10 +50,19 @@ function Setting(){
     const handleSubmitPass = async (e)=>{
         e.preventDefault(); 
         if(editedPass === editedConfirmpass){
-            await updateUser({'password':editedPass,'oldPassword':editedOldPass})
+            setIsLoading(true)
+           const editPassResult =  await updateUser({'password':editedPass,'oldPassword':editedOldPass})
+           if(editPassResult.message){
+                setIsLoading(false)
+               setError(editPassResult.message)
+           }
+           else{
+                navigate(0)
+                alert("Password changed successfully")
+           }
         } 
         else{
-            console.log('Passwords does not match')
+            setError('Passwords does not match')
         } 
     }
     
@@ -106,7 +118,7 @@ function Setting(){
                 <div className={styles.input_wrapper}>
                     <label htmlFor="email"><b>Email</b></label>
                     <div className={styles.input_container}> 
-                        <input onChange={(e)=>setEditedEmail(e.target.value)} value={editedEmail} type="text" name="email" id="email" required/>
+                        <input onChange={(e)=>setEditedEmail(e.target.value)} value={editedEmail} type="email" name="email" id="email" required/>
                     </div>
                 </div>
                 <div className={styles.button_container}>
@@ -135,6 +147,7 @@ function Setting(){
                 </div>
                 </div>
                 <div  className={styles.button_container}>
+                    {error&& <div className={styles.error_container} >{error}</div>}
                     <button  type="submit" className="registerbtn">Change password</button>
                 </div>
             </div>

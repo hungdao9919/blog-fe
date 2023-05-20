@@ -58,6 +58,12 @@
 
         }
     }
+    & .error_container{
+        background-color: rgba(248, 178, 178, 0.479);
+        border: 1px solid red;
+        text-align: center;
+        padding: 4px;
+    }
 }
 
 .register_container{

@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_CLOUD_NAME=dr9qxrwxx REACT_APP_UPLOAD_PRESET=lamsitemmoProfile REACT_APP_API_UPLOAD=https://api.cloudinary.com/v1_1/dr9qxrwxx/upload react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

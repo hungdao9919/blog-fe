@@ -18,7 +18,7 @@ const updateUser = async (data)=>{
         return response.data
       })
       .catch(async (error)=> { 
-        return error.response.data.message
+        return error.response.data
       });
 }
 export default updateUser

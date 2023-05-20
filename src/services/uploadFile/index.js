@@ -1,7 +1,7 @@
 import axios from "axios";   
 const uploadFile = async (profileImage)=>{ 
     const data = new FormData()
-    data.append("file", profileImage)
+    data.append("file", profileImage) 
     const cloudName= process.env.REACT_APP_CLOUD_NAME
     const uploadPreset = process.env.REACT_APP_UPLOAD_PRESET
     const apiUpload = process.env.REACT_APP_API_UPLOAD

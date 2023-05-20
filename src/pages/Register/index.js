@@ -9,28 +9,37 @@ function Register(){
     const globalContext = useContext(GlobalContext) 
     const isLogged = globalContext.isLogged
     const navigate = useNavigate();
-
+    document.title="Register a new user"
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('') 
+    const [repeatPassword, setRepeatPassword] = useState('') 
     const [firstname, setFirstname] = useState('') 
     const [lastname, setLastname] = useState('') 
     const [email, setEmail] = useState('')  
     const [profileImage, setProfileImage] = useState()   
+    const [error, setError] = useState('')   
     if(isLogged){
         navigate('/')
     }
 
     const handleSubmit =async (e)=>{
             e.preventDefault(); 
-            const imageResult = await uploadFile(profileImage)
-            const registerResult =await register(username,password,email,lastname,firstname,imageResult)
-            if(registerResult.status ===201){
-                navigate('/')
-                navigate(0)     
+
+            if(password === repeatPassword){
+                const imageResult = await uploadFile(profileImage)
+                const registerResult =await register(username,password,email,lastname,firstname,imageResult)
+                if(registerResult.status ===201){
+                    navigate('/')
+                    navigate(0)     
+                }
+                else{
+                    setError(registerResult)
+                }     
             }
             else{
-                console.log(registerResult)
-            }     
+                setError('Passwords do not match')
+            }
+
            
         
     }   
@@ -59,7 +68,7 @@ function Register(){
 
                 <label htmlFor="email"><b>Email</b></label>
                 <div className={styles.input_container}> 
-                    <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="text" placeholder="Enter Email" name="email" id="email" required/>
+                    <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="email" placeholder="Enter Email" name="email" id="email" required/>
                 </div>
 
                  
@@ -71,15 +80,18 @@ function Register(){
                     <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Enter Password" name="psw" id="psw" required/>
                 </div>
 
-                {/* <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required/> */}
+                <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
+                <div className={styles.input_container}>
+                <input onChange={(e)=>setRepeatPassword(e.target.value)} value={repeatPassword} type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required/>
+                </div>
                 <div className={styles.upload_container}>
                     <label className={styles.profile_image} htmlFor="profileImage"><b>Upload profile picture</b></label> 
                 </div>
-                <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" style={{visibility:'hidden'}} id="profileImage" name="profileImage" accept="image/*" required/>
+                <input onChange={(e)=>{ setProfileImage(e.target.files[0])}} type="file" style={{visibility:'hidden'}} id="profileImage" name="profileImage" accept="image/*" />
                 {profileImage && <img width='300px' height='300px' src={URL.createObjectURL(profileImage)}/>}
                 
                 <button  type="submit" className="registerbtn">Register</button>
+            {error && <div className={styles.error_container} >{error}</div>}
             </div>
 
             <div className={styles.register_container}>

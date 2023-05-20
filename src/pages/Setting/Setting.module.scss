@@ -65,6 +65,13 @@
     & .input_wrapper{
         margin-top: 12px;
     }
+    & .error_container{
+        background-color: rgba(248, 178, 178, 0.479);
+        border: 1px solid red;
+        text-align: center;
+        padding: 4px;
+        margin-top: 20px;
+    }
 
 }
 .input_container{

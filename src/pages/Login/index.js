@@ -11,6 +11,8 @@ function Login(){
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('') 
+    const [error, setError] =useState('') 
+    document.title="Login"
     if(isLogged){
         return navigate('/')
     }
@@ -25,7 +27,7 @@ function Login(){
                 navigate(0)     
             }
             else{
-                console.log(result)
+                setError(result)
             }
     }
     
@@ -47,8 +49,8 @@ function Login(){
                 </div>
  
 
- 
             <button type="submit">Login</button> 
+            {error&& <div className={styles.error_container}>{error}</div>}
             
            <div className={styles.register_container}><p>Do not have an account? <Link className={styles.register_link}  to='/register'>Register new account</Link>.</p></div>
         </div>
