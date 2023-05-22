@@ -35,8 +35,7 @@ import { GlobalContext } from '../../context/GlobalContext';
             }
             else{
                 let dataFetch = {
-                    'pageNo':pageNoitem,
-                     
+                    'pageNo':pageNoitem,    
                 }
                 let data = await getPublicPosts(dataFetch)  
                 setIsLoading(false)
