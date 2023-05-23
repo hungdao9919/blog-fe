@@ -1,7 +1,10 @@
 .profile_details_container{
     margin-top: 40px;  
     max-width: 100%; 
-    width: 800px;
+    width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
 }
 .profile_header{
     width: 100%;
@@ -144,4 +147,3 @@
     background-color: #414141;
     color:#F5F5F5;
 }
- 

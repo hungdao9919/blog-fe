@@ -69,4 +69,20 @@
     
 }
  
- 
+
+@media all and (min-width: 1024px) and (max-width: 1280px) { 
+    
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) { 
+    
+}
+
+@media all and (max-width: 768px) {
+    .profile_name{
+        display: none;
+    }
+    .profile_image{
+        margin-right: 4px;
+    }
+ }

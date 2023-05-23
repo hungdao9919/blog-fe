@@ -64,6 +64,7 @@ function ProfileActions(){
             <ul>
                 <li><Link to={`/profile-details/${globalContext.profileInfo.username}`}>Profile page</Link></li>
                 <li onClick={handleSetting}>Setting</li>
+                <li onClick={handleCreatePost}>Create a new post</li>
                 <li onClick={handleLogout}>Log out</li>
             </ul>
             </div>

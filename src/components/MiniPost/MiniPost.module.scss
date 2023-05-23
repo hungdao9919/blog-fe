@@ -8,13 +8,21 @@
 .post_actions_container{
     float: right;
 }
- 
+.remove_edit_container{
+    display: flex;
+}
 .viewpost_btn{
-    float: right;
+    display: flex;
+    // float: right;
 }
 .title{
     padding: 0;
     margin: 0;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;  
 }
 .short_desc{
     font-size: 1.4rem;
@@ -32,4 +40,16 @@
     margin: 0;
     padding: 0;
     display: inline-block;
+    font-size: 1.2rem;
 }
+@media all and (min-width: 1024px) and (max-width: 1280px) { 
+    
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) { 
+    
+}
+
+@media all and (max-width: 768px) {
+    
+ }

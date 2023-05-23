@@ -36,8 +36,8 @@ function PostEditor(){
         navigate('/')   
     }
     const handleSubmit = async(e)=>{
-        setIsLoading(true)
         e.preventDefault();
+        setIsLoading(true)
         const imageResult = await uploadFile(postImage)
         const  createPostResult = await createPost(title,postcontent,imageResult)  
         setIsLoading(true)
@@ -96,8 +96,8 @@ function PostEditor(){
                     <input onChange={(e)=>{ setPostImage(e.target.files[0])}} accept="image/*"  type='file' />
                 </div> 
                 <div className={styles.image_preview_container}>
-                    {!postImage && post?._id && <img width='400px' height='400px' style={{objectFit:'cover'}} src={post.postImage}/>}
-                    {postImage&& <img width='400px' height='400px' style={{objectFit:'cover'}} src={URL.createObjectURL(postImage)}/>}
+                    {!postImage && post?._id && <img width='70%' height='70%' style={{objectFit:'cover'}} src={post.postImage}/>}
+                    {postImage&& <img width='70%' height='70%' style={{objectFit:'cover'}} src={URL.createObjectURL(postImage)}/>}
                 </div> 
                  
             </div>

@@ -10,6 +10,8 @@ import getPublicPosts from '../../services/getPublicPosts';
 import MiniPost from '../MiniPost';
 import getPublicComments from '../../services/getPublicComments'
 import Button from '../Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function ProfileDetails (){  
     const globalContext = useContext(GlobalContext) 
     const setIsLoading = globalContext.setIsLoading
@@ -147,7 +149,7 @@ function ProfileDetails (){
                         return <div className={styles.comment} key={index}>
                             <p>{item.commentcontent}</p>
                             <div className={styles.viewpost_btn} >
-                            <Button primary small underline to={`/post-details/${item.postid}`}>View this post</Button>
+                            <Button primary small underline to={`/post-details/${item.postid}`}><FontAwesomeIcon icon={faArrowRight} /></Button>
                             </div>
                         </div> 
                     }): <div className={styles.nocmt}>No comment yet</div>

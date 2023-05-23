@@ -12,7 +12,7 @@ function Navigation(){
     const isLogged = globalContext.isLogged 
     return <div className={styles.container}>
         {console.log('navigation render')} 
-        {isLogged && <Button primary underline className={styles.nav_item} to={'/myposts'}>My Posts</Button> } 
+        {isLogged && <div  className={styles.myposts_btn}><Button primary underline className={styles.nav_item} to={'/myposts'}>My Posts</Button> </div>} 
     </div>
 }  
 export default Navigation;
