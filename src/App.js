@@ -18,6 +18,7 @@ function App() {
   return (
     
     <Router>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
        {isLoading && <Loadding/>}
       <div className="App">
 
