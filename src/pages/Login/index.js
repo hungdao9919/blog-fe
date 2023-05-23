@@ -8,6 +8,8 @@ import { useContext } from 'react'
 
 function Login(){  
     const {isLogged} = useContext(GlobalContext)  
+    const {isLoading, setIsLoading} = useContext(GlobalContext)
+
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('') 
@@ -21,6 +23,7 @@ function Login(){
     
     const handleSubmit = async (e) => {
             e.preventDefault(); 
+            setIsLoading(true)
             const result =  await login(username,password) 
             if(result.status ===200){  
                 navigate('/')

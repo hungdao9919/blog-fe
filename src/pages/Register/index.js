@@ -7,6 +7,8 @@ import uploadFile from '../../services/uploadFile';
 import { useContext } from 'react'  
 function Register(){ 
     const globalContext = useContext(GlobalContext) 
+    const {isLoading, setIsLoading} = useContext(GlobalContext)
+
     const isLogged = globalContext.isLogged
     const navigate = useNavigate();
     document.title="Register a new user"
@@ -24,8 +26,8 @@ function Register(){
 
     const handleSubmit =async (e)=>{
             e.preventDefault(); 
-
             if(password === repeatPassword){
+                setIsLoading(true)
                 const imageResult = await uploadFile(profileImage)
                 const registerResult =await register(username,password,email,lastname,firstname,imageResult)
                 if(registerResult.status ===201){
@@ -33,10 +35,12 @@ function Register(){
                     navigate(0)     
                 }
                 else{
+                    setIsLoading(false)
                     setError(registerResult)
                 }     
             }
             else{
+                setIsLoading(false)
                 setError('Passwords do not match')
             }
 

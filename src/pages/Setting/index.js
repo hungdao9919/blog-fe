@@ -42,9 +42,10 @@ function Setting(){
     }
 
     const handleSubmitInfor =  async(e)=>{
+        setIsLoading(true)
         e.preventDefault(); 
         await updateUser({'email':editedEmail,'lastname':editedLastname,'firstname':editedFirstname})
-        window.location.reload()
+        navigate(0)
     }
 
     const handleSubmitPass = async (e)=>{

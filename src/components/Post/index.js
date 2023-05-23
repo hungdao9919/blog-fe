@@ -8,6 +8,8 @@ import Username from '../Username';
 import getDateTimeFromTimeStamp from '../../services/getDateTimeFromTimeStamp';
 function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,postImage}){ 
     const {post,setPost} = useContext(GlobalContext)
+    const {isLoading, setIsLoading} = useContext(GlobalContext)
+
     const [del, setDel] = useState(false)
     const navigate = useNavigate(Navigate)
     const globalContext = useContext(GlobalContext) 
@@ -16,11 +18,12 @@ function Post({_id,userid,title,postcontent,createdAt,updatedAt,username,postIma
     const handleRemovePost = async (e)=>{ 
         e.stopPropagation()
         if(window.confirm(`Do you want to delete this post? ${title}`)){
-    
+            setIsLoading(true)
             const deleteResult = await deletePost(_id)
             
             if(deleteResult.status ===204){
                 navigate(0) 
+                
             } 
         } 
     }    

@@ -19,11 +19,13 @@ function Home(){
     document.title="Lamsitemmo Blog"
     useEffect(  () => {
         async function getPosts (){ 
+            setIsLoading(true)
             const fetchData ={
                 'pageNo':pageNo
             }
             data = await getPublicPosts(fetchData)    
-            setPosts(data)        
+            setPosts(data)    
+            setIsLoading(false)    
         }
         getPosts()
     },[posts.pageNo])  
